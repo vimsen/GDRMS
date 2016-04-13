@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.Transformer" table="transformer">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="dsoTerritory" class="com.wattics.vimsen.entities.DsoTerritory" fetch="select">
+            <column name="DSO_territory_id" not-null="true" />
+        </many-to-one>
+        <property name="idParent" type="java.lang.Integer">
+            <column name="id_parent" />
+        </property>
+        <property name="location" type="string">
+            <column name="location" />
+        </property>
+        <set name="sites" table="site" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="transformer_id" not-null="true" />
+            </key>
+            <one-to-many class="com.wattics.vimsen.entities.Site" />
+        </set>
+    </class>
+</hibernate-mapping>

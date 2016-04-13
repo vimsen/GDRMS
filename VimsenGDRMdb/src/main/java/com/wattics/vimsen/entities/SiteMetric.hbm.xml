@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.SiteMetric" table="site_metric" lazy="false">
+        <id name="siteId" type="int">
+            <column name="site_id" />
+            <generator class="foreign">
+                <param name="property">site</param>
+            </generator>
+        </id>
+        <one-to-one name="site" class="com.wattics.vimsen.entities.Site" constrained="true"></one-to-one>
+        <property name="siteReliability" type="java.lang.Double">
+            <column name="site_reliability" precision="22" scale="0" />
+        </property>
+        <property name="siteBalance" type="java.lang.Double">
+            <column name="site_balance" precision="22" scale="0" />
+        </property>
+        <property name="numberRequest" type="java.lang.Integer">
+            <column name="number_request" />
+        </property>
+    </class>
+</hibernate-mapping>

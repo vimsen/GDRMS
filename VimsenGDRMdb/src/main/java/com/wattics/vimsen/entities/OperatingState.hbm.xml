@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.OperatingState" table="operating_state" lazy="false">
+        <composite-id name="id" class="com.wattics.vimsen.entities.OperatingStateId">
+            <key-property name="state" type="int">
+                <column name="state" />
+            </key-property>
+            <key-property name="equipmentId" type="int">
+                <column name="equipment_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="equipment" class="com.wattics.vimsen.entities.Equipment" update="false" insert="false" fetch="select">
+            <column name="equipment_id" not-null="true" />
+        </many-to-one>
+        <property name="kw" type="java.lang.Double">
+            <column name="kW" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

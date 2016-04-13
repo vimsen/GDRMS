@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.ProsumerHasSite" table="prosumer_has_site" >
+        <composite-id name="id" class="com.wattics.vimsen.entities.ProsumerHasSiteId">
+            <key-property name="prosumerId" type="int">
+                <column name="prosumer_id" />
+            </key-property>
+            <key-property name="siteId" type="int">
+                <column name="site_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="site" class="com.wattics.vimsen.entities.Site" update="false" insert="false" fetch="select">
+            <column name="site_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="prosumer" class="com.wattics.vimsen.entities.Prosumer" update="false" insert="false" fetch="select">
+            <column name="prosumer_id" not-null="true" />
+        </many-to-one>
+        <property name="type" type="string">
+            <column name="type" />
+        </property>
+    </class>
+</hibernate-mapping>

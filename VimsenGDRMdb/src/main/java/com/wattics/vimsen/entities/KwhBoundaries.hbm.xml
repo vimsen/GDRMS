@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.KwhBoundaries" table="kWh_boundaries" lazy="false">
+        <composite-id name="id" class="com.wattics.vimsen.entities.KwhBoundariesId">
+            <key-property name="dateCreation" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+                <column name="date_creation" length="19" />
+            </key-property>
+            <key-property name="weekday" type="int">
+                <column name="weekday" />
+            </key-property>
+            <key-property name="equipmentId" type="int">
+                <column name="equipment_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="equipment" class="com.wattics.vimsen.entities.Equipment" update="false" insert="false" fetch="select">
+            <column name="equipment_id" not-null="true" />
+        </many-to-one>
+        <property name="minCons0000" type="java.lang.Double">
+            <column name="min_cons_00_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons0015" type="java.lang.Double">
+            <column name="min_cons_00_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons0030" type="java.lang.Double">
+            <column name="min_cons_00_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons0045" type="java.lang.Double">
+            <column name="min_cons_00_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons0100" type="java.lang.Double">
+            <column name="min_cons_01_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons0115" type="java.lang.Double">
+            <column name="min_cons_01_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons0130" type="java.lang.Double">
+            <column name="min_cons_01_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons0145" type="java.lang.Double">
+            <column name="min_cons_01_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons0200" type="java.lang.Double">
+            <column name="min_cons_02_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons0215" type="java.lang.Double">
+            <column name="min_cons_02_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons0230" type="java.lang.Double">
+            <column name="min_cons_02_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons0245" type="java.lang.Double">
+            <column name="min_cons_02_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons0300" type="java.lang.Double">
+            <column name="min_cons_03_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons0315" type="java.lang.Double">
+            <column name="min_cons_03_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons0330" type="java.lang.Double">
+            <column name="min_cons_03_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons0345" type="java.lang.Double">
+            <column name="min_cons_03_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons0400" type="java.lang.Double">
+            <column name="min_cons_04_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons0415" type="java.lang.Double">
+            <column name="min_cons_04_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons0430" type="java.lang.Double">
+            <column name="min_cons_04_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons0445" type="java.lang.Double">
+            <column name="min_cons_04_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons0500" type="java.lang.Double">
+            <column name="min_cons_05_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons0515" type="java.lang.Double">
+            <column name="min_cons_05_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons0530" type="java.lang.Double">
+            <column name="min_cons_05_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons0545" type="java.lang.Double">
+            <column name="min_cons_05_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons0600" type="java.lang.Double">
+            <column name="min_cons_06_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons0615" type="java.lang.Double">
+            <column name="min_cons_06_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons0630" type="java.lang.Double">
+            <column name="min_cons_06_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons0645" type="java.lang.Double">
+            <column name="min_cons_06_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons0700" type="java.lang.Double">
+            <column name="min_cons_07_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons0715" type="java.lang.Double">
+            <column name="min_cons_07_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons0730" type="java.lang.Double">
+            <column name="min_cons_07_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons0745" type="java.lang.Double">
+            <column name="min_cons_07_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons0800" type="java.lang.Double">
+            <column name="min_cons_08_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons0815" type="java.lang.Double">
+            <column name="min_cons_08_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons0830" type="java.lang.Double">
+            <column name="min_cons_08_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons0845" type="java.lang.Double">
+            <column name="min_cons_08_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons0900" type="java.lang.Double">
+            <column name="min_cons_09_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons0915" type="java.lang.Double">
+            <column name="min_cons_09_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons0930" type="java.lang.Double">
+            <column name="min_cons_09_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons0945" type="java.lang.Double">
+            <column name="min_cons_09_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons1000" type="java.lang.Double">
+            <column name="min_cons_10_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons1015" type="java.lang.Double">
+            <column name="min_cons_10_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons1030" type="java.lang.Double">
+            <column name="min_cons_10_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons1045" type="java.lang.Double">
+            <column name="min_cons_10_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons1100" type="java.lang.Double">
+            <column name="min_cons_11_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons1115" type="java.lang.Double">
+            <column name="min_cons_11_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons1130" type="java.lang.Double">
+            <column name="min_cons_11_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons1145" type="java.lang.Double">
+            <column name="min_cons_11_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons1200" type="java.lang.Double">
+            <column name="min_cons_12_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons1215" type="java.lang.Double">
+            <column name="min_cons_12_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons1230" type="java.lang.Double">
+            <column name="min_cons_12_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons1245" type="java.lang.Double">
+            <column name="min_cons_12_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons1300" type="java.lang.Double">
+            <column name="min_cons_13_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons1315" type="java.lang.Double">
+            <column name="min_cons_13_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons1330" type="java.lang.Double">
+            <column name="min_cons_13_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons1345" type="java.lang.Double">
+            <column name="min_cons_13_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons1400" type="java.lang.Double">
+            <column name="min_cons_14_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons1415" type="java.lang.Double">
+            <column name="min_cons_14_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons1430" type="java.lang.Double">
+            <column name="min_cons_14_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons1445" type="java.lang.Double">
+            <column name="min_cons_14_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons1500" type="java.lang.Double">
+            <column name="min_cons_15_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons1515" type="java.lang.Double">
+            <column name="min_cons_15_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons1530" type="java.lang.Double">
+            <column name="min_cons_15_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons1545" type="java.lang.Double">
+            <column name="min_cons_15_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons1600" type="java.lang.Double">
+            <column name="min_cons_16_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons1615" type="java.lang.Double">
+            <column name="min_cons_16_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons1630" type="java.lang.Double">
+            <column name="min_cons_16_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons1645" type="java.lang.Double">
+            <column name="min_cons_16_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons1700" type="java.lang.Double">
+            <column name="min_cons_17_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons1715" type="java.lang.Double">
+            <column name="min_cons_17_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons1730" type="java.lang.Double">
+            <column name="min_cons_17_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons1745" type="java.lang.Double">
+            <column name="min_cons_17_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons1800" type="java.lang.Double">
+            <column name="min_cons_18_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons1815" type="java.lang.Double">
+            <column name="min_cons_18_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons1830" type="java.lang.Double">
+            <column name="min_cons_18_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons1845" type="java.lang.Double">
+            <column name="min_cons_18_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons1900" type="java.lang.Double">
+            <column name="min_cons_19_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons1915" type="java.lang.Double">
+            <column name="min_cons_19_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons1930" type="java.lang.Double">
+            <column name="min_cons_19_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons1945" type="java.lang.Double">
+            <column name="min_cons_19_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons2000" type="java.lang.Double">
+            <column name="min_cons_20_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons2015" type="java.lang.Double">
+            <column name="min_cons_20_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons2030" type="java.lang.Double">
+            <column name="min_cons_20_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons2045" type="java.lang.Double">
+            <column name="min_cons_20_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons2100" type="java.lang.Double">
+            <column name="min_cons_21_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons2115" type="java.lang.Double">
+            <column name="min_cons_21_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons2130" type="java.lang.Double">
+            <column name="min_cons_21_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons2145" type="java.lang.Double">
+            <column name="min_cons_21_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons2200" type="java.lang.Double">
+            <column name="min_cons_22_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons2215" type="java.lang.Double">
+            <column name="min_cons_22_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons2230" type="java.lang.Double">
+            <column name="min_cons_22_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons2245" type="java.lang.Double">
+            <column name="min_cons_22_45" precision="22" scale="0" />
+        </property>
+        <property name="minCons2300" type="java.lang.Double">
+            <column name="min_cons_23_00" precision="22" scale="0" />
+        </property>
+        <property name="minCons2315" type="java.lang.Double">
+            <column name="min_cons_23_15" precision="22" scale="0" />
+        </property>
+        <property name="minCons2330" type="java.lang.Double">
+            <column name="min_cons_23_30" precision="22" scale="0" />
+        </property>
+        <property name="minCons2345" type="java.lang.Double">
+            <column name="min_cons_23_45" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0000" type="java.lang.Double">
+            <column name="max_cons_00_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0030" type="java.lang.Double">
+            <column name="max_cons_00_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0100" type="java.lang.Double">
+            <column name="max_cons_01_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0130" type="java.lang.Double">
+            <column name="max_cons_01_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0200" type="java.lang.Double">
+            <column name="max_cons_02_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0230" type="java.lang.Double">
+            <column name="max_cons_02_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0300" type="java.lang.Double">
+            <column name="max_cons_03_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0330" type="java.lang.Double">
+            <column name="max_cons_03_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0400" type="java.lang.Double">
+            <column name="max_cons_04_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0430" type="java.lang.Double">
+            <column name="max_cons_04_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0500" type="java.lang.Double">
+            <column name="max_cons_05_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0530" type="java.lang.Double">
+            <column name="max_cons_05_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0600" type="java.lang.Double">
+            <column name="max_cons_06_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0630" type="java.lang.Double">
+            <column name="max_cons_06_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0700" type="java.lang.Double">
+            <column name="max_cons_07_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0730" type="java.lang.Double">
+            <column name="max_cons_07_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0800" type="java.lang.Double">
+            <column name="max_cons_08_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0830" type="java.lang.Double">
+            <column name="max_cons_08_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0900" type="java.lang.Double">
+            <column name="max_cons_09_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons0930" type="java.lang.Double">
+            <column name="max_cons_09_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1000" type="java.lang.Double">
+            <column name="max_cons_10_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1030" type="java.lang.Double">
+            <column name="max_cons_10_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1100" type="java.lang.Double">
+            <column name="max_cons_11_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1130" type="java.lang.Double">
+            <column name="max_cons_11_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1200" type="java.lang.Double">
+            <column name="max_cons_12_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1230" type="java.lang.Double">
+            <column name="max_cons_12_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1300" type="java.lang.Double">
+            <column name="max_cons_13_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1330" type="java.lang.Double">
+            <column name="max_cons_13_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1400" type="java.lang.Double">
+            <column name="max_cons_14_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1430" type="java.lang.Double">
+            <column name="max_cons_14_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1500" type="java.lang.Double">
+            <column name="max_cons_15_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1530" type="java.lang.Double">
+            <column name="max_cons_15_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1600" type="java.lang.Double">
+            <column name="max_cons_16_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1630" type="java.lang.Double">
+            <column name="max_cons_16_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1700" type="java.lang.Double">
+            <column name="max_cons_17_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1730" type="java.lang.Double">
+            <column name="max_cons_17_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1800" type="java.lang.Double">
+            <column name="max_cons_18_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1830" type="java.lang.Double">
+            <column name="max_cons_18_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1900" type="java.lang.Double">
+            <column name="max_cons_19_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons1930" type="java.lang.Double">
+            <column name="max_cons_19_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons2000" type="java.lang.Double">
+            <column name="max_cons_20_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons2030" type="java.lang.Double">
+            <column name="max_cons_20_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons2100" type="java.lang.Double">
+            <column name="max_cons_21_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons2130" type="java.lang.Double">
+            <column name="max_cons_21_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons2200" type="java.lang.Double">
+            <column name="max_cons_22_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons2230" type="java.lang.Double">
+            <column name="max_cons_22_30" precision="22" scale="0" />
+        </property>
+        <property name="maxCons2300" type="java.lang.Double">
+            <column name="max_cons_23_00" precision="22" scale="0" />
+        </property>
+        <property name="maxCons2330" type="java.lang.Double">
+            <column name="max_cons_23_30" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.log
+
+build/
+.settings/
+build.xml
+manifest.mf
+/target
+/settings.xml
+/test-output
+/src/main/resources
+
+
+#local file 
+/src/main/java/com/wattics/vimsen/general/HibernateCheck.java
+/src/main/java/com/wattics/entities_services.SchemaSelectionTest.java
+/src/main/java/hibernate.cfg.xml

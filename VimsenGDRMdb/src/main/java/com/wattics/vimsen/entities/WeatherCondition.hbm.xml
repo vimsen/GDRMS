@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.WeatherCondition" table="weather_condition">
+        <composite-id name="id" class="com.wattics.vimsen.entities.WeatherConditionId">
+            <key-property name="cityId" type="int">
+                <column name="city_id" />
+            </key-property>
+            <key-property name="timestamp" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+                <column name="timestamp" length="19" />
+            </key-property>
+            <key-property name="tyoe" type="string">
+                <column name="tyoe" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="city" class="com.wattics.vimsen.entities.City" update="false" insert="false" fetch="select">
+            <column name="city_id" not-null="true" />
+        </many-to-one>
+        <property name="value" type="java.lang.Float">
+            <column name="value" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

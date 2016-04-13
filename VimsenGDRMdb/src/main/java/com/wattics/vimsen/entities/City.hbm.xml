@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.City" table="city">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="country" class="com.wattics.vimsen.entities.Country" fetch="select">
+            <column name="country_id" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="county" type="string">
+            <column name="county" />
+        </property>
+        <property name="timezone" type="string">
+            <column name="timezone" />
+        </property>
+        <set name="weatherConditions" table="weather_condition" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="city_id" not-null="true" />
+            </key>
+            <one-to-many class="com.wattics.vimsen.entities.WeatherCondition" />
+        </set>
+        <set name="sites" table="site" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="city_id" not-null="true" />
+            </key>
+            <one-to-many class="com.wattics.vimsen.entities.Site" />
+        </set>
+    </class>
+</hibernate-mapping>

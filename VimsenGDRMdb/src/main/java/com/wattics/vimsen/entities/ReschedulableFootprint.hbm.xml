@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.ReschedulableFootprint" table="reschedulable_footprint">
+        <id name="equipmentId" type="int">
+            <column name="equipment_id" />
+            <generator class="foreign">
+                <param name="property">equipment</param>
+            </generator>
+        </id>
+        <one-to-one name="equipment" class="com.wattics.vimsen.entities.Equipment" constrained="true"></one-to-one>
+        <property name="lengthCycle" type="java.lang.Integer">
+            <column name="length_cycle">
+                <comment>length of the cycle period in minutes</comment>
+            </column>
+        </property>
+        <property name="kwhCycle" type="java.lang.Double">
+            <column name="kwh_cycle" precision="22" scale="0" />
+        </property>
+        <property name="demandPattern" type="string">
+            <column name="demand_pattern" length="65535" />
+        </property>
+        <property name="minLoad" type="java.lang.Double">
+            <column name="min_load" precision="22" scale="0" />
+        </property>
+        <property name="maxLoad" type="java.lang.Double">
+            <column name="max_load" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>
