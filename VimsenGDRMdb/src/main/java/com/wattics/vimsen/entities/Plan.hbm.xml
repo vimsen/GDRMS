@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.wattics.vimsen.entities.Plan" table="plan" lazy="false">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<many-to-one name="marketSignal"
+			class="com.wattics.vimsen.entities.MarketSignal" fetch="select">
+			<column name="market_signal_id" not-null="true" />
+		</many-to-one>
+		<property name="name" type="string">
+			<column name="name" />
+		</property>
+		<property name="date"
+			type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+			<column name="date" length="10" />
+		</property>
+		<property name="type" type="string">
+			<column name="type" length="45" />
+		</property>
+		<property name="status" type="string">
+			<column name="status" />
+		</property>
+		<set name="planWeights" table="plan_weight" inverse="true" lazy="true"
+			fetch="select">
+			<key>
+				<column name="plan_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.PlanWeight" />
+		</set>
+		<set name="planHasActions" table="plan_has_action" inverse="true"
+			lazy="false" fetch="select">
+			<key>
+				<column name="plan_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.PlanHasAction" />
+		</set>
+	</class>
+</hibernate-mapping>

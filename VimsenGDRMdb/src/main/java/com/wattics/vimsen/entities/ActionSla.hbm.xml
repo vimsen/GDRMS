@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.ActionSla" table="action_SLA">
+        <id name="actionId" type="int">
+            <column name="action_id" />
+            <generator class="foreign">
+                <param name="property">action</param>
+            </generator>
+        </id>
+        <one-to-one name="action" class="com.wattics.vimsen.entities.Action" constrained="true"></one-to-one>
+        <property name="mandatory" type="java.lang.Boolean">
+            <column name="Mandatory">
+                <comment>Mandatory vs voluntary</comment>
+            </column>
+        </property>
+        <property name="dayAheadNotice" type="java.lang.Boolean">
+            <column name="Day_ahead_notice" />
+        </property>
+        <property name="intraDayNotice" type="java.lang.Boolean">
+            <column name="Intra_day_notice" />
+        </property>
+        <property name="timeIntraDay" type="java.lang.Double">
+            <column name="Time_intra_day" precision="22" scale="0" />
+        </property>
+        <property name="runtimeNotice" type="java.lang.Boolean">
+            <column name="Runtime_notice" />
+        </property>
+        <property name="automated" type="java.lang.Boolean">
+            <column name="Automated" />
+        </property>
+        <property name="manual" type="java.lang.Boolean">
+            <column name="Manual">
+                <comment>Manual and semi automated</comment>
+            </column>
+        </property>
+        <property name="deadline" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+            <column name="Deadline" length="19">
+                <comment>Time of the day</comment>
+            </column>
+        </property>
+        <property name="consumptionTarget" type="java.lang.Double">
+            <column name="Consumption_target" precision="22" scale="0" />
+        </property>
+        <property name="startResponsePeriod" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+            <column name="Start_response_period" length="19" />
+        </property>
+        <property name="endResponsePeriod" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+            <column name="End_response_period" length="19" />
+        </property>
+        <property name="maximumDuration" type="java.lang.Double">
+            <column name="Maximum_duration" precision="22" scale="0" />
+        </property>
+        <property name="slaCapacity" type="java.lang.Double">
+            <column name="Sla_capacity" precision="22" scale="0">
+                <comment>Maximum reduction during one day</comment>
+            </column>
+        </property>
+        <property name="maxNumberCall" type="java.lang.Integer">
+            <column name="max_number_call" />
+        </property>
+        <property name="maxNumberCallDaily" type="java.lang.Integer">
+            <column name="max_number_call_daily" />
+        </property>
+        <property name="actionRegistration" type="java.lang.Boolean">
+            <column name="action_registration" />
+        </property>
+    </class>
+</hibernate-mapping>

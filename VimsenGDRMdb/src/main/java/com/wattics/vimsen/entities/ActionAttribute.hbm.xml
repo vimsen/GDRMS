@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.ActionAttribute" table="action_attribute">
+        <id name="name" type="string">
+            <column name="name" />
+            <generator class="assigned" />
+        </id>
+        <set name="actionHasActionAttributes" table="action_has_action_attribute" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="action_attribute_name" not-null="true" />
+            </key>
+            <one-to-many class="com.wattics.vimsen.entities.ActionHasActionAttribute" />
+        </set>
+        <set name="planWeights" table="plan_weight" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="action_attribute_name" not-null="true" />
+            </key>
+            <one-to-many class="com.wattics.vimsen.entities.PlanWeight" />
+        </set>
+    </class>
+</hibernate-mapping>

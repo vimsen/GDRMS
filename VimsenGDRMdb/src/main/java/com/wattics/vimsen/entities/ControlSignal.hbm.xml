@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25-gen-2016 10.15.39 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.ControlSignal" table="control_signal" lazy="false">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="classSignal" type="string">
+            <column name="class_signal">
+                <comment>3 values: CHARGE DISPATCH CONTROL</comment>
+            </column>
+        </property>
+        <property name="type" type="string">
+            <column name="type">
+                <comment>list of values, different for different names</comment>
+            </column>
+        </property>
+        <property name="unit" type="string">
+            <column name="unit">
+                <comment>Values available: Energy None power</comment>
+            </column>
+        </property>
+        <property name="rangeSignal" type="string">
+            <column name="range_signal" length="65535" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <property name="ruleControllerId" type="string">
+            <column name="rule_controller_id" />
+        </property>
+        <set name="actions" table="action" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="control_signal_id" not-null="true" />
+            </key>
+            <one-to-many class="com.wattics.vimsen.entities.Action" />
+        </set>
+    </class>
+</hibernate-mapping>

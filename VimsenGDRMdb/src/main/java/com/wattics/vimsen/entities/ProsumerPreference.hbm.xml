@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.ProsumerPreference" table="prosumer_preference">
+        <id name="actionId" type="int">
+            <column name="action_id" />
+            <generator class="foreign">
+                <param name="property">action</param>
+            </generator>
+        </id>
+        <one-to-one name="action" class="com.wattics.vimsen.entities.Action" constrained="true"></one-to-one>
+        <property name="priority" type="java.lang.Integer">
+            <column name="priority" />
+        </property>
+        <property name="pumin0000" type="java.lang.Double">
+            <column name="pUmin_00_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin0015" type="java.lang.Double">
+            <column name="pUmin_00_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin0030" type="java.lang.Double">
+            <column name="pUmin_00_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin0045" type="java.lang.Double">
+            <column name="pUmin_00_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin0100" type="java.lang.Double">
+            <column name="pUmin_01_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin0115" type="java.lang.Double">
+            <column name="pUmin_01_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin0130" type="java.lang.Double">
+            <column name="pUmin_01_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin0145" type="java.lang.Double">
+            <column name="pUmin_01_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin0200" type="java.lang.Double">
+            <column name="pUmin_02_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin0215" type="java.lang.Double">
+            <column name="pUmin_02_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin0230" type="java.lang.Double">
+            <column name="pUmin_02_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin0245" type="java.lang.Double">
+            <column name="pUmin_02_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin0300" type="java.lang.Double">
+            <column name="pUmin_03_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin0315" type="java.lang.Double">
+            <column name="pUmin_03_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin0330" type="java.lang.Double">
+            <column name="pUmin_03_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin0345" type="java.lang.Double">
+            <column name="pUmin_03_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin0400" type="java.lang.Double">
+            <column name="pUmin_04_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin0415" type="java.lang.Double">
+            <column name="pUmin_04_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin0430" type="java.lang.Double">
+            <column name="pUmin_04_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin0445" type="java.lang.Double">
+            <column name="pUmin_04_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin0500" type="java.lang.Double">
+            <column name="pUmin_05_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin0515" type="java.lang.Double">
+            <column name="pUmin_05_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin0530" type="java.lang.Double">
+            <column name="pUmin_05_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin0545" type="java.lang.Double">
+            <column name="pUmin_05_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin0600" type="java.lang.Double">
+            <column name="pUmin_06_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin0615" type="java.lang.Double">
+            <column name="pUmin_06_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin0630" type="java.lang.Double">
+            <column name="pUmin_06_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin0645" type="java.lang.Double">
+            <column name="pUmin_06_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin0700" type="java.lang.Double">
+            <column name="pUmin_07_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin0715" type="java.lang.Double">
+            <column name="pUmin_07_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin0730" type="java.lang.Double">
+            <column name="pUmin_07_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin0745" type="java.lang.Double">
+            <column name="pUmin_07_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin0800" type="java.lang.Double">
+            <column name="pUmin_08_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin0815" type="java.lang.Double">
+            <column name="pUmin_08_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin0830" type="java.lang.Double">
+            <column name="pUmin_08_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin0845" type="java.lang.Double">
+            <column name="pUmin_08_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin0900" type="java.lang.Double">
+            <column name="pUmin_09_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin0915" type="java.lang.Double">
+            <column name="pUmin_09_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin0930" type="java.lang.Double">
+            <column name="pUmin_09_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin0945" type="java.lang.Double">
+            <column name="pUmin_09_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin1000" type="java.lang.Double">
+            <column name="pUmin_10_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin1015" type="java.lang.Double">
+            <column name="pUmin_10_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin1030" type="java.lang.Double">
+            <column name="pUmin_10_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin1045" type="java.lang.Double">
+            <column name="pUmin_10_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin1100" type="java.lang.Double">
+            <column name="pUmin_11_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin1115" type="java.lang.Double">
+            <column name="pUmin_11_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin1130" type="java.lang.Double">
+            <column name="pUmin_11_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin1145" type="java.lang.Double">
+            <column name="pUmin_11_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin1200" type="java.lang.Double">
+            <column name="pUmin_12_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin1215" type="java.lang.Double">
+            <column name="pUmin_12_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin1230" type="java.lang.Double">
+            <column name="pUmin_12_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin1245" type="java.lang.Double">
+            <column name="pUmin_12_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin1300" type="java.lang.Double">
+            <column name="pUmin_13_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin1315" type="java.lang.Double">
+            <column name="pUmin_13_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin1330" type="java.lang.Double">
+            <column name="pUmin_13_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin1345" type="java.lang.Double">
+            <column name="pUmin_13_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin1400" type="java.lang.Double">
+            <column name="pUmin_14_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin1415" type="java.lang.Double">
+            <column name="pUmin_14_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin1430" type="java.lang.Double">
+            <column name="pUmin_14_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin1445" type="java.lang.Double">
+            <column name="pUmin_14_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin1500" type="java.lang.Double">
+            <column name="pUmin_15_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin1515" type="java.lang.Double">
+            <column name="pUmin_15_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin1530" type="java.lang.Double">
+            <column name="pUmin_15_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin1545" type="java.lang.Double">
+            <column name="pUmin_15_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin1600" type="java.lang.Double">
+            <column name="pUmin_16_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin1615" type="java.lang.Double">
+            <column name="pUmin_16_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin1630" type="java.lang.Double">
+            <column name="pUmin_16_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin1645" type="java.lang.Double">
+            <column name="pUmin_16_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin1700" type="java.lang.Double">
+            <column name="pUmin_17_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin1715" type="java.lang.Double">
+            <column name="pUmin_17_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin1730" type="java.lang.Double">
+            <column name="pUmin_17_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin1745" type="java.lang.Double">
+            <column name="pUmin_17_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin1800" type="java.lang.Double">
+            <column name="pUmin_18_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin1815" type="java.lang.Double">
+            <column name="pUmin_18_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin1830" type="java.lang.Double">
+            <column name="pUmin_18_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin1845" type="java.lang.Double">
+            <column name="pUmin_18_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin1900" type="java.lang.Double">
+            <column name="pUmin_19_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin1915" type="java.lang.Double">
+            <column name="pUmin_19_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin1930" type="java.lang.Double">
+            <column name="pUmin_19_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin1945" type="java.lang.Double">
+            <column name="pUmin_19_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin2000" type="java.lang.Double">
+            <column name="pUmin_20_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin2015" type="java.lang.Double">
+            <column name="pUmin_20_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin2030" type="java.lang.Double">
+            <column name="pUmin_20_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin2045" type="java.lang.Double">
+            <column name="pUmin_20_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin2100" type="java.lang.Double">
+            <column name="pUmin_21_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin2115" type="java.lang.Double">
+            <column name="pUmin_21_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin2130" type="java.lang.Double">
+            <column name="pUmin_21_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin2145" type="java.lang.Double">
+            <column name="pUmin_21_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin2200" type="java.lang.Double">
+            <column name="pUmin_22_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin2215" type="java.lang.Double">
+            <column name="pUmin_22_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin2230" type="java.lang.Double">
+            <column name="pUmin_22_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin2245" type="java.lang.Double">
+            <column name="pUmin_22_45" precision="22" scale="0" />
+        </property>
+        <property name="pumin2300" type="java.lang.Double">
+            <column name="pUmin_23_00" precision="22" scale="0" />
+        </property>
+        <property name="pumin2315" type="java.lang.Double">
+            <column name="pUmin_23_15" precision="22" scale="0" />
+        </property>
+        <property name="pumin2330" type="java.lang.Double">
+            <column name="pUmin_23_30" precision="22" scale="0" />
+        </property>
+        <property name="pumin2345" type="java.lang.Double">
+            <column name="pUmin_23_45" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

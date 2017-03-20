@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.wattics.vimsen.entities.PlanHasAction" table="plan_has_action">
+		<composite-id name="id"
+			class="com.wattics.vimsen.entities.PlanHasActionId">
+			<key-property name="planId" type="int">
+				<column name="plan_id" />
+			</key-property>
+			<key-property name="actionId" type="int">
+				<column name="action_id" />
+			</key-property>
+		</composite-id>
+		<many-to-one name="plan" class="com.wattics.vimsen.entities.Plan"
+			update="false" insert="false" fetch="select">
+			<column name="plan_id" not-null="true" />
+		</many-to-one>
+		<many-to-one name="action" class="com.wattics.vimsen.entities.Action"
+			update="false" insert="false" fetch="select">
+			<column name="action_id" not-null="true" />
+		</many-to-one>
+		<property name="TStart"
+			type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+			<column name="t_start" length="19" />
+		</property>
+		<property name="TEnd"
+			type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+			<column name="t_end" length="19" />
+		</property>
+		<property name="plannedAmount" type="string">
+			<column name="planned_amount" length="65535" />
+		</property>
+		<property name="implemented" type="java.lang.Boolean">
+			<column name="implemented" />
+		</property>
+		<property name="signalValue" type="string">
+			<column name="signal_value" length="45" />
+		</property>
+		<property name="actualAmount" type="string">
+			<column name="actual_amount" length="65535" />
+		</property>
+		<property name="updatedActualAt"
+			type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+			<column name="updated_actual_at" length="19" />
+		</property>
+		<property name="amountRecProgressToSend" type="int">
+			<column name="amount_rec_progress_to_send"/>
+		</property>
+		<property name="amountRecProgressSent" type="int">
+			<column name="amount_rec_progress_sent"/>
+		</property>
+	</class>
+</hibernate-mapping>

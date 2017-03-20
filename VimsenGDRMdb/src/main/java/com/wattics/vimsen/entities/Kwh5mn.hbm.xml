@@ -1,0 +1,883 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.Kwh5mn" table="kWh_5mn">
+        <composite-id name="id" class="com.wattics.vimsen.entities.Kwh5mnId">
+            <key-property name="equipmentId" type="int">
+                <column name="equipment_id" />
+            </key-property>
+            <key-property name="date" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+                <column name="date" length="10" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="equipment" class="com.wattics.vimsen.entities.Equipment" update="false" insert="false" fetch="select">
+            <column name="equipment_id" not-null="true" />
+        </many-to-one>
+        <property name="t0000" type="java.lang.Double">
+            <column name="t_00_00" precision="22" scale="0" />
+        </property>
+        <property name="t0005" type="java.lang.Double">
+            <column name="t_00_05" precision="22" scale="0" />
+        </property>
+        <property name="t0010" type="java.lang.Double">
+            <column name="t_00_10" precision="22" scale="0" />
+        </property>
+        <property name="t0015" type="java.lang.Double">
+            <column name="t_00_15" precision="22" scale="0" />
+        </property>
+        <property name="t0020" type="java.lang.Double">
+            <column name="t_00_20" precision="22" scale="0" />
+        </property>
+        <property name="t0025" type="java.lang.Double">
+            <column name="t_00_25" precision="22" scale="0" />
+        </property>
+        <property name="t0030" type="java.lang.Double">
+            <column name="t_00_30" precision="22" scale="0" />
+        </property>
+        <property name="t0035" type="java.lang.Double">
+            <column name="t_00_35" precision="22" scale="0" />
+        </property>
+        <property name="t0040" type="java.lang.Double">
+            <column name="t_00_40" precision="22" scale="0" />
+        </property>
+        <property name="t0045" type="java.lang.Double">
+            <column name="t_00_45" precision="22" scale="0" />
+        </property>
+        <property name="t0050" type="java.lang.Double">
+            <column name="t_00_50" precision="22" scale="0" />
+        </property>
+        <property name="t0055" type="java.lang.Double">
+            <column name="t_00_55" precision="22" scale="0" />
+        </property>
+        <property name="t0100" type="java.lang.Double">
+            <column name="t_01_00" precision="22" scale="0" />
+        </property>
+        <property name="t0105" type="java.lang.Double">
+            <column name="t_01_05" precision="22" scale="0" />
+        </property>
+        <property name="t0110" type="java.lang.Double">
+            <column name="t_01_10" precision="22" scale="0" />
+        </property>
+        <property name="t0115" type="java.lang.Double">
+            <column name="t_01_15" precision="22" scale="0" />
+        </property>
+        <property name="t0120" type="java.lang.Double">
+            <column name="t_01_20" precision="22" scale="0" />
+        </property>
+        <property name="t0125" type="java.lang.Double">
+            <column name="t_01_25" precision="22" scale="0" />
+        </property>
+        <property name="t0130" type="java.lang.Double">
+            <column name="t_01_30" precision="22" scale="0" />
+        </property>
+        <property name="t0135" type="java.lang.Double">
+            <column name="t_01_35" precision="22" scale="0" />
+        </property>
+        <property name="t0140" type="java.lang.Double">
+            <column name="t_01_40" precision="22" scale="0" />
+        </property>
+        <property name="t0145" type="java.lang.Double">
+            <column name="t_01_45" precision="22" scale="0" />
+        </property>
+        <property name="t0150" type="java.lang.Double">
+            <column name="t_01_50" precision="22" scale="0" />
+        </property>
+        <property name="t0155" type="java.lang.Double">
+            <column name="t_01_55" precision="22" scale="0" />
+        </property>
+        <property name="t0200" type="java.lang.Double">
+            <column name="t_02_00" precision="22" scale="0" />
+        </property>
+        <property name="t0205" type="java.lang.Double">
+            <column name="t_02_05" precision="22" scale="0" />
+        </property>
+        <property name="t0210" type="java.lang.Double">
+            <column name="t_02_10" precision="22" scale="0" />
+        </property>
+        <property name="t0215" type="java.lang.Double">
+            <column name="t_02_15" precision="22" scale="0" />
+        </property>
+        <property name="t0220" type="java.lang.Double">
+            <column name="t_02_20" precision="22" scale="0" />
+        </property>
+        <property name="t0225" type="java.lang.Double">
+            <column name="t_02_25" precision="22" scale="0" />
+        </property>
+        <property name="t0230" type="java.lang.Double">
+            <column name="t_02_30" precision="22" scale="0" />
+        </property>
+        <property name="t0235" type="java.lang.Double">
+            <column name="t_02_35" precision="22" scale="0" />
+        </property>
+        <property name="t0240" type="java.lang.Double">
+            <column name="t_02_40" precision="22" scale="0" />
+        </property>
+        <property name="t0245" type="java.lang.Double">
+            <column name="t_02_45" precision="22" scale="0" />
+        </property>
+        <property name="t0250" type="java.lang.Double">
+            <column name="t_02_50" precision="22" scale="0" />
+        </property>
+        <property name="t0255" type="java.lang.Double">
+            <column name="t_02_55" precision="22" scale="0" />
+        </property>
+        <property name="t0300" type="java.lang.Double">
+            <column name="t_03_00" precision="22" scale="0" />
+        </property>
+        <property name="t0305" type="java.lang.Double">
+            <column name="t_03_05" precision="22" scale="0" />
+        </property>
+        <property name="t0310" type="java.lang.Double">
+            <column name="t_03_10" precision="22" scale="0" />
+        </property>
+        <property name="t0315" type="java.lang.Double">
+            <column name="t_03_15" precision="22" scale="0" />
+        </property>
+        <property name="t0320" type="java.lang.Double">
+            <column name="t_03_20" precision="22" scale="0" />
+        </property>
+        <property name="t0325" type="java.lang.Double">
+            <column name="t_03_25" precision="22" scale="0" />
+        </property>
+        <property name="t0330" type="java.lang.Double">
+            <column name="t_03_30" precision="22" scale="0" />
+        </property>
+        <property name="t0335" type="java.lang.Double">
+            <column name="t_03_35" precision="22" scale="0" />
+        </property>
+        <property name="t0340" type="java.lang.Double">
+            <column name="t_03_40" precision="22" scale="0" />
+        </property>
+        <property name="t0345" type="java.lang.Double">
+            <column name="t_03_45" precision="22" scale="0" />
+        </property>
+        <property name="t0350" type="java.lang.Double">
+            <column name="t_03_50" precision="22" scale="0" />
+        </property>
+        <property name="t0355" type="java.lang.Double">
+            <column name="t_03_55" precision="22" scale="0" />
+        </property>
+        <property name="t0400" type="java.lang.Double">
+            <column name="t_04_00" precision="22" scale="0" />
+        </property>
+        <property name="t0405" type="java.lang.Double">
+            <column name="t_04_05" precision="22" scale="0" />
+        </property>
+        <property name="t0410" type="java.lang.Double">
+            <column name="t_04_10" precision="22" scale="0" />
+        </property>
+        <property name="t0415" type="java.lang.Double">
+            <column name="t_04_15" precision="22" scale="0" />
+        </property>
+        <property name="t0420" type="java.lang.Double">
+            <column name="t_04_20" precision="22" scale="0" />
+        </property>
+        <property name="t0425" type="java.lang.Double">
+            <column name="t_04_25" precision="22" scale="0" />
+        </property>
+        <property name="t0430" type="java.lang.Double">
+            <column name="t_04_30" precision="22" scale="0" />
+        </property>
+        <property name="t0435" type="java.lang.Double">
+            <column name="t_04_35" precision="22" scale="0" />
+        </property>
+        <property name="t0440" type="java.lang.Double">
+            <column name="t_04_40" precision="22" scale="0" />
+        </property>
+        <property name="t0445" type="java.lang.Double">
+            <column name="t_04_45" precision="22" scale="0" />
+        </property>
+        <property name="t0450" type="java.lang.Double">
+            <column name="t_04_50" precision="22" scale="0" />
+        </property>
+        <property name="t0455" type="java.lang.Double">
+            <column name="t_04_55" precision="22" scale="0" />
+        </property>
+        <property name="t0500" type="java.lang.Double">
+            <column name="t_05_00" precision="22" scale="0" />
+        </property>
+        <property name="t0505" type="java.lang.Double">
+            <column name="t_05_05" precision="22" scale="0" />
+        </property>
+        <property name="t0510" type="java.lang.Double">
+            <column name="t_05_10" precision="22" scale="0" />
+        </property>
+        <property name="t0515" type="java.lang.Double">
+            <column name="t_05_15" precision="22" scale="0" />
+        </property>
+        <property name="t0520" type="java.lang.Double">
+            <column name="t_05_20" precision="22" scale="0" />
+        </property>
+        <property name="t0525" type="java.lang.Double">
+            <column name="t_05_25" precision="22" scale="0" />
+        </property>
+        <property name="t0530" type="java.lang.Double">
+            <column name="t_05_30" precision="22" scale="0" />
+        </property>
+        <property name="t0535" type="java.lang.Double">
+            <column name="t_05_35" precision="22" scale="0" />
+        </property>
+        <property name="t0540" type="java.lang.Double">
+            <column name="t_05_40" precision="22" scale="0" />
+        </property>
+        <property name="t0545" type="java.lang.Double">
+            <column name="t_05_45" precision="22" scale="0" />
+        </property>
+        <property name="t0550" type="java.lang.Double">
+            <column name="t_05_50" precision="22" scale="0" />
+        </property>
+        <property name="t0555" type="java.lang.Double">
+            <column name="t_05_55" precision="22" scale="0" />
+        </property>
+        <property name="t0600" type="java.lang.Double">
+            <column name="t_06_00" precision="22" scale="0" />
+        </property>
+        <property name="t0605" type="java.lang.Double">
+            <column name="t_06_05" precision="22" scale="0" />
+        </property>
+        <property name="t0610" type="java.lang.Double">
+            <column name="t_06_10" precision="22" scale="0" />
+        </property>
+        <property name="t0615" type="java.lang.Double">
+            <column name="t_06_15" precision="22" scale="0" />
+        </property>
+        <property name="t0620" type="java.lang.Double">
+            <column name="t_06_20" precision="22" scale="0" />
+        </property>
+        <property name="t0625" type="java.lang.Double">
+            <column name="t_06_25" precision="22" scale="0" />
+        </property>
+        <property name="t0630" type="java.lang.Double">
+            <column name="t_06_30" precision="22" scale="0" />
+        </property>
+        <property name="t0635" type="java.lang.Double">
+            <column name="t_06_35" precision="22" scale="0" />
+        </property>
+        <property name="t0640" type="java.lang.Double">
+            <column name="t_06_40" precision="22" scale="0" />
+        </property>
+        <property name="t0645" type="java.lang.Double">
+            <column name="t_06_45" precision="22" scale="0" />
+        </property>
+        <property name="t0650" type="java.lang.Double">
+            <column name="t_06_50" precision="22" scale="0" />
+        </property>
+        <property name="t0655" type="java.lang.Double">
+            <column name="t_06_55" precision="22" scale="0" />
+        </property>
+        <property name="t0700" type="java.lang.Double">
+            <column name="t_07_00" precision="22" scale="0" />
+        </property>
+        <property name="t0705" type="java.lang.Double">
+            <column name="t_07_05" precision="22" scale="0" />
+        </property>
+        <property name="t0710" type="java.lang.Double">
+            <column name="t_07_10" precision="22" scale="0" />
+        </property>
+        <property name="t0715" type="java.lang.Double">
+            <column name="t_07_15" precision="22" scale="0" />
+        </property>
+        <property name="t0720" type="java.lang.Double">
+            <column name="t_07_20" precision="22" scale="0" />
+        </property>
+        <property name="t0725" type="java.lang.Double">
+            <column name="t_07_25" precision="22" scale="0" />
+        </property>
+        <property name="t0730" type="java.lang.Double">
+            <column name="t_07_30" precision="22" scale="0" />
+        </property>
+        <property name="t0735" type="java.lang.Double">
+            <column name="t_07_35" precision="22" scale="0" />
+        </property>
+        <property name="t0740" type="java.lang.Double">
+            <column name="t_07_40" precision="22" scale="0" />
+        </property>
+        <property name="t0745" type="java.lang.Double">
+            <column name="t_07_45" precision="22" scale="0" />
+        </property>
+        <property name="t0750" type="java.lang.Double">
+            <column name="t_07_50" precision="22" scale="0" />
+        </property>
+        <property name="t0755" type="java.lang.Double">
+            <column name="t_07_55" precision="22" scale="0" />
+        </property>
+        <property name="t0800" type="java.lang.Double">
+            <column name="t_08_00" precision="22" scale="0" />
+        </property>
+        <property name="t0805" type="java.lang.Double">
+            <column name="t_08_05" precision="22" scale="0" />
+        </property>
+        <property name="t0810" type="java.lang.Double">
+            <column name="t_08_10" precision="22" scale="0" />
+        </property>
+        <property name="t0815" type="java.lang.Double">
+            <column name="t_08_15" precision="22" scale="0" />
+        </property>
+        <property name="t0820" type="java.lang.Double">
+            <column name="t_08_20" precision="22" scale="0" />
+        </property>
+        <property name="t0825" type="java.lang.Double">
+            <column name="t_08_25" precision="22" scale="0" />
+        </property>
+        <property name="t0830" type="java.lang.Double">
+            <column name="t_08_30" precision="22" scale="0" />
+        </property>
+        <property name="t0835" type="java.lang.Double">
+            <column name="t_08_35" precision="22" scale="0" />
+        </property>
+        <property name="t0840" type="java.lang.Double">
+            <column name="t_08_40" precision="22" scale="0" />
+        </property>
+        <property name="t0845" type="java.lang.Double">
+            <column name="t_08_45" precision="22" scale="0" />
+        </property>
+        <property name="t0850" type="java.lang.Double">
+            <column name="t_08_50" precision="22" scale="0" />
+        </property>
+        <property name="t0855" type="java.lang.Double">
+            <column name="t_08_55" precision="22" scale="0" />
+        </property>
+        <property name="t0900" type="java.lang.Double">
+            <column name="t_09_00" precision="22" scale="0" />
+        </property>
+        <property name="t0905" type="java.lang.Double">
+            <column name="t_09_05" precision="22" scale="0" />
+        </property>
+        <property name="t0910" type="java.lang.Double">
+            <column name="t_09_10" precision="22" scale="0" />
+        </property>
+        <property name="t0915" type="java.lang.Double">
+            <column name="t_09_15" precision="22" scale="0" />
+        </property>
+        <property name="t0920" type="java.lang.Double">
+            <column name="t_09_20" precision="22" scale="0" />
+        </property>
+        <property name="t0925" type="java.lang.Double">
+            <column name="t_09_25" precision="22" scale="0" />
+        </property>
+        <property name="t0930" type="java.lang.Double">
+            <column name="t_09_30" precision="22" scale="0" />
+        </property>
+        <property name="t0935" type="java.lang.Double">
+            <column name="t_09_35" precision="22" scale="0" />
+        </property>
+        <property name="t0940" type="java.lang.Double">
+            <column name="t_09_40" precision="22" scale="0" />
+        </property>
+        <property name="t0945" type="java.lang.Double">
+            <column name="t_09_45" precision="22" scale="0" />
+        </property>
+        <property name="t0950" type="java.lang.Double">
+            <column name="t_09_50" precision="22" scale="0" />
+        </property>
+        <property name="t0955" type="java.lang.Double">
+            <column name="t_09_55" precision="22" scale="0" />
+        </property>
+        <property name="t1000" type="java.lang.Double">
+            <column name="t_10_00" precision="22" scale="0" />
+        </property>
+        <property name="t1005" type="java.lang.Double">
+            <column name="t_10_05" precision="22" scale="0" />
+        </property>
+        <property name="t1010" type="java.lang.Double">
+            <column name="t_10_10" precision="22" scale="0" />
+        </property>
+        <property name="t1015" type="java.lang.Double">
+            <column name="t_10_15" precision="22" scale="0" />
+        </property>
+        <property name="t1020" type="java.lang.Double">
+            <column name="t_10_20" precision="22" scale="0" />
+        </property>
+        <property name="t1025" type="java.lang.Double">
+            <column name="t_10_25" precision="22" scale="0" />
+        </property>
+        <property name="t1030" type="java.lang.Double">
+            <column name="t_10_30" precision="22" scale="0" />
+        </property>
+        <property name="t1035" type="java.lang.Double">
+            <column name="t_10_35" precision="22" scale="0" />
+        </property>
+        <property name="t1040" type="java.lang.Double">
+            <column name="t_10_40" precision="22" scale="0" />
+        </property>
+        <property name="t1045" type="java.lang.Double">
+            <column name="t_10_45" precision="22" scale="0" />
+        </property>
+        <property name="t1050" type="java.lang.Double">
+            <column name="t_10_50" precision="22" scale="0" />
+        </property>
+        <property name="t1055" type="java.lang.Double">
+            <column name="t_10_55" precision="22" scale="0" />
+        </property>
+        <property name="t1100" type="java.lang.Double">
+            <column name="t_11_00" precision="22" scale="0" />
+        </property>
+        <property name="t1105" type="java.lang.Double">
+            <column name="t_11_05" precision="22" scale="0" />
+        </property>
+        <property name="t1110" type="java.lang.Double">
+            <column name="t_11_10" precision="22" scale="0" />
+        </property>
+        <property name="t1115" type="java.lang.Double">
+            <column name="t_11_15" precision="22" scale="0" />
+        </property>
+        <property name="t1120" type="java.lang.Double">
+            <column name="t_11_20" precision="22" scale="0" />
+        </property>
+        <property name="t1125" type="java.lang.Double">
+            <column name="t_11_25" precision="22" scale="0" />
+        </property>
+        <property name="t1130" type="java.lang.Double">
+            <column name="t_11_30" precision="22" scale="0" />
+        </property>
+        <property name="t1135" type="java.lang.Double">
+            <column name="t_11_35" precision="22" scale="0" />
+        </property>
+        <property name="t1140" type="java.lang.Double">
+            <column name="t_11_40" precision="22" scale="0" />
+        </property>
+        <property name="t1145" type="java.lang.Double">
+            <column name="t_11_45" precision="22" scale="0" />
+        </property>
+        <property name="t1150" type="java.lang.Double">
+            <column name="t_11_50" precision="22" scale="0" />
+        </property>
+        <property name="t1155" type="java.lang.Double">
+            <column name="t_11_55" precision="22" scale="0" />
+        </property>
+        <property name="t1200" type="java.lang.Double">
+            <column name="t_12_00" precision="22" scale="0" />
+        </property>
+        <property name="t1205" type="java.lang.Double">
+            <column name="t_12_05" precision="22" scale="0" />
+        </property>
+        <property name="t1210" type="java.lang.Double">
+            <column name="t_12_10" precision="22" scale="0" />
+        </property>
+        <property name="t1215" type="java.lang.Double">
+            <column name="t_12_15" precision="22" scale="0" />
+        </property>
+        <property name="t1220" type="java.lang.Double">
+            <column name="t_12_20" precision="22" scale="0" />
+        </property>
+        <property name="t1225" type="java.lang.Double">
+            <column name="t_12_25" precision="22" scale="0" />
+        </property>
+        <property name="t1230" type="java.lang.Double">
+            <column name="t_12_30" precision="22" scale="0" />
+        </property>
+        <property name="t1235" type="java.lang.Double">
+            <column name="t_12_35" precision="22" scale="0" />
+        </property>
+        <property name="t1240" type="java.lang.Double">
+            <column name="t_12_40" precision="22" scale="0" />
+        </property>
+        <property name="t1245" type="java.lang.Double">
+            <column name="t_12_45" precision="22" scale="0" />
+        </property>
+        <property name="t1250" type="java.lang.Double">
+            <column name="t_12_50" precision="22" scale="0" />
+        </property>
+        <property name="t1255" type="java.lang.Double">
+            <column name="t_12_55" precision="22" scale="0" />
+        </property>
+        <property name="t1300" type="java.lang.Double">
+            <column name="t_13_00" precision="22" scale="0" />
+        </property>
+        <property name="t1305" type="java.lang.Double">
+            <column name="t_13_05" precision="22" scale="0" />
+        </property>
+        <property name="t1310" type="java.lang.Double">
+            <column name="t_13_10" precision="22" scale="0" />
+        </property>
+        <property name="t1315" type="java.lang.Double">
+            <column name="t_13_15" precision="22" scale="0" />
+        </property>
+        <property name="t1320" type="java.lang.Double">
+            <column name="t_13_20" precision="22" scale="0" />
+        </property>
+        <property name="t1325" type="java.lang.Double">
+            <column name="t_13_25" precision="22" scale="0" />
+        </property>
+        <property name="t1330" type="java.lang.Double">
+            <column name="t_13_30" precision="22" scale="0" />
+        </property>
+        <property name="t1335" type="java.lang.Double">
+            <column name="t_13_35" precision="22" scale="0" />
+        </property>
+        <property name="t1340" type="java.lang.Double">
+            <column name="t_13_40" precision="22" scale="0" />
+        </property>
+        <property name="t1345" type="java.lang.Double">
+            <column name="t_13_45" precision="22" scale="0" />
+        </property>
+        <property name="t1350" type="java.lang.Double">
+            <column name="t_13_50" precision="22" scale="0" />
+        </property>
+        <property name="t1355" type="java.lang.Double">
+            <column name="t_13_55" precision="22" scale="0" />
+        </property>
+        <property name="t1400" type="java.lang.Double">
+            <column name="t_14_00" precision="22" scale="0" />
+        </property>
+        <property name="t1405" type="java.lang.Double">
+            <column name="t_14_05" precision="22" scale="0" />
+        </property>
+        <property name="t1410" type="java.lang.Double">
+            <column name="t_14_10" precision="22" scale="0" />
+        </property>
+        <property name="t1415" type="java.lang.Double">
+            <column name="t_14_15" precision="22" scale="0" />
+        </property>
+        <property name="t1420" type="java.lang.Double">
+            <column name="t_14_20" precision="22" scale="0" />
+        </property>
+        <property name="t1425" type="java.lang.Double">
+            <column name="t_14_25" precision="22" scale="0" />
+        </property>
+        <property name="t1430" type="java.lang.Double">
+            <column name="t_14_30" precision="22" scale="0" />
+        </property>
+        <property name="t1435" type="java.lang.Double">
+            <column name="t_14_35" precision="22" scale="0" />
+        </property>
+        <property name="t1440" type="java.lang.Double">
+            <column name="t_14_40" precision="22" scale="0" />
+        </property>
+        <property name="t1445" type="java.lang.Double">
+            <column name="t_14_45" precision="22" scale="0" />
+        </property>
+        <property name="t1450" type="java.lang.Double">
+            <column name="t_14_50" precision="22" scale="0" />
+        </property>
+        <property name="t1455" type="java.lang.Double">
+            <column name="t_14_55" precision="22" scale="0" />
+        </property>
+        <property name="t1500" type="java.lang.Double">
+            <column name="t_15_00" precision="22" scale="0" />
+        </property>
+        <property name="t1505" type="java.lang.Double">
+            <column name="t_15_05" precision="22" scale="0" />
+        </property>
+        <property name="t1510" type="java.lang.Double">
+            <column name="t_15_10" precision="22" scale="0" />
+        </property>
+        <property name="t1515" type="java.lang.Double">
+            <column name="t_15_15" precision="22" scale="0" />
+        </property>
+        <property name="t1520" type="java.lang.Double">
+            <column name="t_15_20" precision="22" scale="0" />
+        </property>
+        <property name="t1525" type="java.lang.Double">
+            <column name="t_15_25" precision="22" scale="0" />
+        </property>
+        <property name="t1530" type="java.lang.Double">
+            <column name="t_15_30" precision="22" scale="0" />
+        </property>
+        <property name="t1535" type="java.lang.Double">
+            <column name="t_15_35" precision="22" scale="0" />
+        </property>
+        <property name="t1540" type="java.lang.Double">
+            <column name="t_15_40" precision="22" scale="0" />
+        </property>
+        <property name="t1545" type="java.lang.Double">
+            <column name="t_15_45" precision="22" scale="0" />
+        </property>
+        <property name="t1550" type="java.lang.Double">
+            <column name="t_15_50" precision="22" scale="0" />
+        </property>
+        <property name="t1555" type="java.lang.Double">
+            <column name="t_15_55" precision="22" scale="0" />
+        </property>
+        <property name="t1600" type="java.lang.Double">
+            <column name="t_16_00" precision="22" scale="0" />
+        </property>
+        <property name="t1605" type="java.lang.Double">
+            <column name="t_16_05" precision="22" scale="0" />
+        </property>
+        <property name="t1610" type="java.lang.Double">
+            <column name="t_16_10" precision="22" scale="0" />
+        </property>
+        <property name="t1615" type="java.lang.Double">
+            <column name="t_16_15" precision="22" scale="0" />
+        </property>
+        <property name="t1620" type="java.lang.Double">
+            <column name="t_16_20" precision="22" scale="0" />
+        </property>
+        <property name="t1625" type="java.lang.Double">
+            <column name="t_16_25" precision="22" scale="0" />
+        </property>
+        <property name="t1630" type="java.lang.Double">
+            <column name="t_16_30" precision="22" scale="0" />
+        </property>
+        <property name="t1635" type="java.lang.Double">
+            <column name="t_16_35" precision="22" scale="0" />
+        </property>
+        <property name="t1640" type="java.lang.Double">
+            <column name="t_16_40" precision="22" scale="0" />
+        </property>
+        <property name="t1645" type="java.lang.Double">
+            <column name="t_16_45" precision="22" scale="0" />
+        </property>
+        <property name="t1650" type="java.lang.Double">
+            <column name="t_16_50" precision="22" scale="0" />
+        </property>
+        <property name="t1655" type="java.lang.Double">
+            <column name="t_16_55" precision="22" scale="0" />
+        </property>
+        <property name="t1700" type="java.lang.Double">
+            <column name="t_17_00" precision="22" scale="0" />
+        </property>
+        <property name="t1705" type="java.lang.Double">
+            <column name="t_17_05" precision="22" scale="0" />
+        </property>
+        <property name="t1710" type="java.lang.Double">
+            <column name="t_17_10" precision="22" scale="0" />
+        </property>
+        <property name="t1715" type="java.lang.Double">
+            <column name="t_17_15" precision="22" scale="0" />
+        </property>
+        <property name="t1720" type="java.lang.Double">
+            <column name="t_17_20" precision="22" scale="0" />
+        </property>
+        <property name="t1725" type="java.lang.Double">
+            <column name="t_17_25" precision="22" scale="0" />
+        </property>
+        <property name="t1730" type="java.lang.Double">
+            <column name="t_17_30" precision="22" scale="0" />
+        </property>
+        <property name="t1735" type="java.lang.Double">
+            <column name="t_17_35" precision="22" scale="0" />
+        </property>
+        <property name="t1740" type="java.lang.Double">
+            <column name="t_17_40" precision="22" scale="0" />
+        </property>
+        <property name="t1745" type="java.lang.Double">
+            <column name="t_17_45" precision="22" scale="0" />
+        </property>
+        <property name="t1750" type="java.lang.Double">
+            <column name="t_17_50" precision="22" scale="0" />
+        </property>
+        <property name="t1755" type="java.lang.Double">
+            <column name="t_17_55" precision="22" scale="0" />
+        </property>
+        <property name="t1800" type="java.lang.Double">
+            <column name="t_18_00" precision="22" scale="0" />
+        </property>
+        <property name="t1805" type="java.lang.Double">
+            <column name="t_18_05" precision="22" scale="0" />
+        </property>
+        <property name="t1810" type="java.lang.Double">
+            <column name="t_18_10" precision="22" scale="0" />
+        </property>
+        <property name="t1815" type="java.lang.Double">
+            <column name="t_18_15" precision="22" scale="0" />
+        </property>
+        <property name="t1820" type="java.lang.Double">
+            <column name="t_18_20" precision="22" scale="0" />
+        </property>
+        <property name="t1825" type="java.lang.Double">
+            <column name="t_18_25" precision="22" scale="0" />
+        </property>
+        <property name="t1830" type="java.lang.Double">
+            <column name="t_18_30" precision="22" scale="0" />
+        </property>
+        <property name="t1835" type="java.lang.Double">
+            <column name="t_18_35" precision="22" scale="0" />
+        </property>
+        <property name="t1840" type="java.lang.Double">
+            <column name="t_18_40" precision="22" scale="0" />
+        </property>
+        <property name="t1845" type="java.lang.Double">
+            <column name="t_18_45" precision="22" scale="0" />
+        </property>
+        <property name="t1850" type="java.lang.Double">
+            <column name="t_18_50" precision="22" scale="0" />
+        </property>
+        <property name="t1855" type="java.lang.Double">
+            <column name="t_18_55" precision="22" scale="0" />
+        </property>
+        <property name="t1900" type="java.lang.Double">
+            <column name="t_19_00" precision="22" scale="0" />
+        </property>
+        <property name="t1905" type="java.lang.Double">
+            <column name="t_19_05" precision="22" scale="0" />
+        </property>
+        <property name="t1910" type="java.lang.Double">
+            <column name="t_19_10" precision="22" scale="0" />
+        </property>
+        <property name="t1915" type="java.lang.Double">
+            <column name="t_19_15" precision="22" scale="0" />
+        </property>
+        <property name="t1920" type="java.lang.Double">
+            <column name="t_19_20" precision="22" scale="0" />
+        </property>
+        <property name="t1925" type="java.lang.Double">
+            <column name="t_19_25" precision="22" scale="0" />
+        </property>
+        <property name="t1930" type="java.lang.Double">
+            <column name="t_19_30" precision="22" scale="0" />
+        </property>
+        <property name="t1935" type="java.lang.Double">
+            <column name="t_19_35" precision="22" scale="0" />
+        </property>
+        <property name="t1940" type="java.lang.Double">
+            <column name="t_19_40" precision="22" scale="0" />
+        </property>
+        <property name="t1945" type="java.lang.Double">
+            <column name="t_19_45" precision="22" scale="0" />
+        </property>
+        <property name="t1950" type="java.lang.Double">
+            <column name="t_19_50" precision="22" scale="0" />
+        </property>
+        <property name="t1955" type="java.lang.Double">
+            <column name="t_19_55" precision="22" scale="0" />
+        </property>
+        <property name="t2000" type="java.lang.Double">
+            <column name="t_20_00" precision="22" scale="0" />
+        </property>
+        <property name="t2005" type="java.lang.Double">
+            <column name="t_20_05" precision="22" scale="0" />
+        </property>
+        <property name="t2010" type="java.lang.Double">
+            <column name="t_20_10" precision="22" scale="0" />
+        </property>
+        <property name="t2015" type="java.lang.Double">
+            <column name="t_20_15" precision="22" scale="0" />
+        </property>
+        <property name="t2020" type="java.lang.Double">
+            <column name="t_20_20" precision="22" scale="0" />
+        </property>
+        <property name="t2025" type="java.lang.Double">
+            <column name="t_20_25" precision="22" scale="0" />
+        </property>
+        <property name="t2030" type="java.lang.Double">
+            <column name="t_20_30" precision="22" scale="0" />
+        </property>
+        <property name="t2035" type="java.lang.Double">
+            <column name="t_20_35" precision="22" scale="0" />
+        </property>
+        <property name="t2040" type="java.lang.Double">
+            <column name="t_20_40" precision="22" scale="0" />
+        </property>
+        <property name="t2045" type="java.lang.Double">
+            <column name="t_20_45" precision="22" scale="0" />
+        </property>
+        <property name="t2050" type="java.lang.Double">
+            <column name="t_20_50" precision="22" scale="0" />
+        </property>
+        <property name="t2055" type="java.lang.Double">
+            <column name="t_20_55" precision="22" scale="0" />
+        </property>
+        <property name="t2100" type="java.lang.Double">
+            <column name="t_21_00" precision="22" scale="0" />
+        </property>
+        <property name="t2105" type="java.lang.Double">
+            <column name="t_21_05" precision="22" scale="0" />
+        </property>
+        <property name="t2110" type="java.lang.Double">
+            <column name="t_21_10" precision="22" scale="0" />
+        </property>
+        <property name="t2115" type="java.lang.Double">
+            <column name="t_21_15" precision="22" scale="0" />
+        </property>
+        <property name="t2120" type="java.lang.Double">
+            <column name="t_21_20" precision="22" scale="0" />
+        </property>
+        <property name="t2125" type="java.lang.Double">
+            <column name="t_21_25" precision="22" scale="0" />
+        </property>
+        <property name="t2130" type="java.lang.Double">
+            <column name="t_21_30" precision="22" scale="0" />
+        </property>
+        <property name="t2135" type="java.lang.Double">
+            <column name="t_21_35" precision="22" scale="0" />
+        </property>
+        <property name="t2140" type="java.lang.Double">
+            <column name="t_21_40" precision="22" scale="0" />
+        </property>
+        <property name="t2145" type="java.lang.Double">
+            <column name="t_21_45" precision="22" scale="0" />
+        </property>
+        <property name="t2150" type="java.lang.Double">
+            <column name="t_21_50" precision="22" scale="0" />
+        </property>
+        <property name="t2155" type="java.lang.Double">
+            <column name="t_21_55" precision="22" scale="0" />
+        </property>
+        <property name="t2200" type="java.lang.Double">
+            <column name="t_22_00" precision="22" scale="0" />
+        </property>
+        <property name="t2205" type="java.lang.Double">
+            <column name="t_22_05" precision="22" scale="0" />
+        </property>
+        <property name="t2210" type="java.lang.Double">
+            <column name="t_22_10" precision="22" scale="0" />
+        </property>
+        <property name="t2215" type="java.lang.Double">
+            <column name="t_22_15" precision="22" scale="0" />
+        </property>
+        <property name="t2220" type="java.lang.Double">
+            <column name="t_22_20" precision="22" scale="0" />
+        </property>
+        <property name="t2225" type="java.lang.Double">
+            <column name="t_22_25" precision="22" scale="0" />
+        </property>
+        <property name="t2230" type="java.lang.Double">
+            <column name="t_22_30" precision="22" scale="0" />
+        </property>
+        <property name="t2235" type="java.lang.Double">
+            <column name="t_22_35" precision="22" scale="0" />
+        </property>
+        <property name="t2240" type="java.lang.Double">
+            <column name="t_22_40" precision="22" scale="0" />
+        </property>
+        <property name="t2245" type="java.lang.Double">
+            <column name="t_22_45" precision="22" scale="0" />
+        </property>
+        <property name="t2250" type="java.lang.Double">
+            <column name="t_22_50" precision="22" scale="0" />
+        </property>
+        <property name="t2255" type="java.lang.Double">
+            <column name="t_22_55" precision="22" scale="0" />
+        </property>
+        <property name="t2300" type="java.lang.Double">
+            <column name="t_23_00" precision="22" scale="0" />
+        </property>
+        <property name="t2305" type="java.lang.Double">
+            <column name="t_23_05" precision="22" scale="0" />
+        </property>
+        <property name="t2310" type="java.lang.Double">
+            <column name="t_23_10" precision="22" scale="0" />
+        </property>
+        <property name="t2315" type="java.lang.Double">
+            <column name="t_23_15" precision="22" scale="0" />
+        </property>
+        <property name="t2320" type="java.lang.Double">
+            <column name="t_23_20" precision="22" scale="0" />
+        </property>
+        <property name="t2325" type="java.lang.Double">
+            <column name="t_23_25" precision="22" scale="0" />
+        </property>
+        <property name="t2330" type="java.lang.Double">
+            <column name="t_23_30" precision="22" scale="0" />
+        </property>
+        <property name="t2335" type="java.lang.Double">
+            <column name="t_23_35" precision="22" scale="0" />
+        </property>
+        <property name="t2340" type="java.lang.Double">
+            <column name="t_23_40" precision="22" scale="0" />
+        </property>
+        <property name="t2345" type="java.lang.Double">
+            <column name="t_23_45" precision="22" scale="0" />
+        </property>
+        <property name="t2350" type="java.lang.Double">
+            <column name="t_23_50" precision="22" scale="0" />
+        </property>
+        <property name="t2355" type="java.lang.Double">
+            <column name="t_23_55" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

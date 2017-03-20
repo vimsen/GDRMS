@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.ActionMetric" table="action_metric">
+        <id name="actionId" type="int">
+            <column name="action_id" />
+            <generator class="foreign">
+                <param name="property">action</param>
+            </generator>
+        </id>
+        <one-to-one name="action" class="com.wattics.vimsen.entities.Action" constrained="true"></one-to-one>
+        <property name="actionReliability" type="java.lang.Double">
+            <column name="action_reliability" precision="22" scale="0" />
+        </property>
+        <property name="actionBalance" type="java.lang.Double">
+            <column name="action_balance" precision="22" scale="0" />
+        </property>
+        <property name="numberRequest" type="java.lang.Integer">
+            <column name="number_request" />
+        </property>
+    </class>
+</hibernate-mapping>

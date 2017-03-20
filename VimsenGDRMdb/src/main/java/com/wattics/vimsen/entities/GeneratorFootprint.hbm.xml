@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.GeneratorFootprint" table="generator_footprint">
+        <id name="equipmentId" type="int">
+            <column name="equipment_id" />
+            <generator class="foreign">
+                <param name="property">equipment</param>
+            </generator>
+        </id>
+        <one-to-one name="equipment" class="com.wattics.vimsen.entities.Equipment" constrained="true"></one-to-one>
+        <property name="nominalOperatingVoltageDc" type="java.lang.Integer">
+            <column name="nominal_operating_voltage_dc" />
+        </property>
+        <property name="operatingVoltageMinDc" type="java.lang.Integer">
+            <column name="operating_voltage_min_dc" />
+        </property>
+        <property name="operatingVoltageMaxDc" type="java.lang.Integer">
+            <column name="operating_voltage_max_dc" />
+        </property>
+        <property name="maxInputCurrentDc" type="java.lang.Float">
+            <column name="max_input_current_dc" precision="12" scale="0" />
+        </property>
+        <property name="nominalOperatingVoltageAc" type="java.lang.Integer">
+            <column name="nominal_operating_voltage_ac" />
+        </property>
+        <property name="nominalOperatingFrequencyAc" type="java.lang.Integer">
+            <column name="nominal_operating_frequency_ac" />
+        </property>
+        <property name="nominalOutputPowerAc" type="java.lang.Integer">
+            <column name="nominal_output_power_ac" />
+        </property>
+        <property name="maxOutputPowerAc" type="java.lang.Integer">
+            <column name="max_output_power_ac" />
+        </property>
+        <property name="maxOutputCurrentAc" type="java.lang.Integer">
+            <column name="max_output_current_ac" />
+        </property>
+    </class>
+</hibernate-mapping>

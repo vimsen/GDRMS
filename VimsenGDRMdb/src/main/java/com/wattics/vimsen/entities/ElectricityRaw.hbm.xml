@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.ElectricityRaw" table="electricity_raw">
+        <id name="equipmentId" type="int">
+            <column name="equipment_id" />
+            <generator class="foreign">
+                <param name="property">equipment</param>
+            </generator>
+        </id>
+        <version name="timestamp" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+            <column name="timestamp" length="19" />
+        </version>
+        <one-to-one name="equipment" class="com.wattics.vimsen.entities.Equipment" constrained="true"></one-to-one>
+        <property name="activePowerA" type="java.lang.Double">
+            <column name="active_power_A" precision="22" scale="0" />
+        </property>
+        <property name="reactivePowerA" type="java.lang.Double">
+            <column name="reactive_power_A" precision="22" scale="0" />
+        </property>
+        <property name="activePowerB" type="java.lang.Double">
+            <column name="active_power_B" precision="22" scale="0" />
+        </property>
+        <property name="reactivePowerB" type="java.lang.Double">
+            <column name="reactive_power_B" precision="22" scale="0" />
+        </property>
+        <property name="activePowerC" type="java.lang.Double">
+            <column name="active_power_C" precision="22" scale="0" />
+        </property>
+        <property name="reactivePowerC" type="java.lang.Double">
+            <column name="reactive_power_C" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

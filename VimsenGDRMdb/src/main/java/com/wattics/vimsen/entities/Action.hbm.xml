@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25-gen-2016 10.15.39 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.wattics.vimsen.entities.Action" table="action"
+		lazy="false">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="controlSignal"
+			class="com.wattics.vimsen.entities.ControlSignal" fetch="select">
+			<column name="control_signal_id" not-null="true" />
+		</many-to-one>
+		<many-to-one name="equipment" class="com.wattics.vimsen.entities.Equipment"
+			fetch="select">
+			<column name="equipment_id" not-null="true" />
+		</many-to-one>
+		<one-to-one name="actionSla" class="com.wattics.vimsen.entities.ActionSla"></one-to-one>
+		<set name="dailyAvailableReductions" table="daily_available_reduction"
+			inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="action_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.DailyAvailableReduction" />
+		</set>
+		<one-to-one name="actionMetric" class="com.wattics.vimsen.entities.ActionMetric"></one-to-one>
+		<set name="actionHasActionAttributes" table="action_has_action_attribute"
+			inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="action_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.ActionHasActionAttribute" />
+		</set>
+		<one-to-one name="prosumerPreference"
+			class="com.wattics.vimsen.entities.ProsumerPreference"></one-to-one>
+		<set name="planHasActions" table="plan_has_action" inverse="true"
+			lazy="true" fetch="select">
+			<key>
+				<column name="action_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.PlanHasAction" />
+		</set>
+	</class>
+</hibernate-mapping>

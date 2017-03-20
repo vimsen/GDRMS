@@ -1,0 +1,20 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.log
+
+build/
+.settings/
+dist/
+nbproject/
+build.xml
+manifest.mf
+/target
+/settings.xml
+/test-output
+
+#local tests
+/src/test/java/com/wattics/vimsen/GDRMmanager/**

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.ActionHasActionAttribute" table="action_has_action_attribute">
+        <composite-id name="id" class="com.wattics.vimsen.entities.ActionHasActionAttributeId">
+            <key-property name="actionId" type="int">
+                <column name="action_id" />
+            </key-property>
+            <key-property name="actionAttributeName" type="string">
+                <column name="action_attribute_name" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="action" class="com.wattics.vimsen.entities.Action" update="false" insert="false" fetch="select">
+            <column name="action_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="actionAttribute" class="com.wattics.vimsen.entities.ActionAttribute" update="false" insert="false" fetch="select">
+            <column name="action_attribute_name" not-null="true" />
+        </many-to-one>
+        <property name="value" type="java.lang.Double">
+            <column name="value" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

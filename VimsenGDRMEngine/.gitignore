@@ -1,0 +1,18 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.log
+
+build/
+.settings/
+dist/
+nbproject/
+build.xml
+manifest.mf
+/target
+/settings.xml
+/test-output
+/db.properties

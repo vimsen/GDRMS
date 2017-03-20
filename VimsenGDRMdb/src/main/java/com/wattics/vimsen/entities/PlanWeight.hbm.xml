@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.wattics.vimsen.entities.PlanWeight" table="plan_weight">
+        <composite-id name="id" class="com.wattics.vimsen.entities.PlanWeightId">
+            <key-property name="planId" type="int">
+                <column name="plan_id" />
+            </key-property>
+            <key-property name="actionAttributeName" type="string">
+                <column name="action_attribute_name" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="plan" class="com.wattics.vimsen.entities.Plan" update="false" insert="false" fetch="select">
+            <column name="plan_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="actionAttribute" class="com.wattics.vimsen.entities.ActionAttribute" update="false" insert="false" fetch="select">
+            <column name="action_attribute_name" not-null="true" />
+        </many-to-one>
+        <property name="weight" type="big_decimal">
+            <column name="weight" precision="6" scale="5" />
+        </property>
+    </class>
+</hibernate-mapping>
