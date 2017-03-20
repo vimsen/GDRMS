@@ -9,10 +9,9 @@ import org.testng.annotations.Test;
 import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterException;
 import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterInterface;
 import com.wattics.vimsen.EDMSdatamanager.EDMSMockDataGetter;
-import com.wattics.vimsen.GDRMdatamanager.GDRMDataGetterInterface;
 import com.wattics.vimsen.GDRMdatamanager.GDRMDataStorerInterface;
-import com.wattics.vimsen.GDRMdatamanager.MockGDRMDataGetter;
 import com.wattics.vimsen.GDRMdatamanager.MockGDRMDataStorer;
+import com.wattics.vimsen.GDRMdatamanager.ValidationMock;
 import com.wattics.vimsen.dbDAO.DataAccessLayerException;
 import com.wattics.vimsen.dbDAO.HibernateUtil;
 import com.wattics.vimsen.entities.MarketSignal;
@@ -23,7 +22,9 @@ import com.wattics.vimsen.utils.VimsenTestUtil;
 
 public class PlanUpdaterTest {
 
-  String testConfigurationFile = "schemaTestConfig.cfg.xml";
+  // Uses mock classes. To be modified
+
+  String testConfigurationFile = "localhostJavaTest.cfg.xml";
   HibernateUtil hibernateUtil;
   int numberProsumers = 30;
 
@@ -31,7 +32,7 @@ public class PlanUpdaterTest {
   public void planRegisteredIsNotUpdated() throws DataAccessLayerException, EDMSDataGetterException {
 
     EDMSDataGetterInterface edmsDataGetter = new EDMSMockDataGetter();
-    GDRMDataGetterInterface dataGetter = new MockGDRMDataGetter();
+    ValidationMock dataGetter = new ValidationMock();
     GDRMDataStorerInterface dataStorer = new MockGDRMDataStorer();
 
     DateTime dateTimeStart = DateTime.now().minusMinutes(20);
@@ -54,7 +55,7 @@ public class PlanUpdaterTest {
   public void planCreatedIsUpdatedToOngoingTest() throws DataAccessLayerException, EDMSDataGetterException, MapperException {
 
     EDMSDataGetterInterface edmsDataGetter = new EDMSMockDataGetter();
-    GDRMDataGetterInterface dataGetter = new MockGDRMDataGetter();
+    ValidationMock dataGetter = new ValidationMock();
     GDRMDataStorerInterface dataStorer = new MockGDRMDataStorer();
 
     DateTime dateTimeStart = DateTime.now().minusMinutes(20);
@@ -80,7 +81,7 @@ public class PlanUpdaterTest {
   public void planCreatedIsUpdatedToCompletedTest() throws DataAccessLayerException, EDMSDataGetterException, MapperException {
 
     EDMSDataGetterInterface edmsDataGetter = new EDMSMockDataGetter();
-    GDRMDataGetterInterface dataGetter = new MockGDRMDataGetter();
+    ValidationMock dataGetter = new ValidationMock();
     GDRMDataStorerInterface dataStorer = new MockGDRMDataStorer();
 
     DateTime dateTimeStart = DateTime.now().minusMinutes(35);

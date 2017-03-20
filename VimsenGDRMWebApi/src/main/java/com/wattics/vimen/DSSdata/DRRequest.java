@@ -11,8 +11,9 @@ public class DRRequest {
   public String start_time_text;
   public int interval;
   public String unit;
-  public Double[] target_reduction;
-  public int[] prosumers_primary;
-  public int[] prosumers_secondary;
+  public Double[] target_values;
+  public String[] prosumers_primary;
+  public String[] prosumers_secondary;
+  public String type;
 
 }

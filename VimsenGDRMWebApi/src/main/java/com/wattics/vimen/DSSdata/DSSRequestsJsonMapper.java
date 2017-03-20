@@ -27,8 +27,8 @@ public class DSSRequestsJsonMapper {
 
   private static DRRequest drRequestloadEnergyConversion(DRRequest dssRequest) {
     int intervalSizeSec = dssRequest.interval;
-    Double[] targetLoad = LoadConverter.convertArrayKwToKwh(dssRequest.target_reduction, intervalSizeSec);
-    dssRequest.target_reduction = targetLoad;
+    Double[] targetLoad = LoadConverter.convertArrayKwToKwh(dssRequest.target_values, intervalSizeSec);
+    dssRequest.target_values = targetLoad;
     return dssRequest;
   }
 
@@ -59,20 +59,20 @@ public class DSSRequestsJsonMapper {
   }
 
   private static PlanCurrentStatus planStatusEnergyLoadConversion(PlanCurrentStatus planCurrentStatus) {
-    HashMap<Integer, Double[]> actual_dr_load = new HashMap<Integer, Double[]>();
+    HashMap<String, Double[]> actual_dr_load = new HashMap<String, Double[]>();
     if (isNotNull(planCurrentStatus.actual_dr)) {
-      HashMap<Integer, Double[]> actual_dr = planCurrentStatus.actual_dr;
-      for (Entry<Integer, Double[]> entry : actual_dr.entrySet()) {
+      HashMap<String, Double[]> actual_dr = planCurrentStatus.actual_dr;
+      for (Entry<String, Double[]> entry : actual_dr.entrySet()) {
         Double[] load = LoadConverter.convertArrayKwhToKw(entry.getValue(), planCurrentStatus.interval);
         actual_dr_load.put(entry.getKey(), load);
       }
     }
     planCurrentStatus.actual_dr = actual_dr_load;
 
-    HashMap<Integer, Double[]> planned_dr_load = new HashMap<Integer, Double[]>();
+    HashMap<String, Double[]> planned_dr_load = new HashMap<String, Double[]>();
     if (isNotNull(planCurrentStatus.planned_dr)) {
-      HashMap<Integer, Double[]> planned_dr = planCurrentStatus.planned_dr;
-      for (Entry<Integer, Double[]> entry : planned_dr.entrySet()) {
+      HashMap<String, Double[]> planned_dr = planCurrentStatus.planned_dr;
+      for (Entry<String, Double[]> entry : planned_dr.entrySet()) {
         Double[] load = LoadConverter.convertArrayKwhToKw(entry.getValue(), planCurrentStatus.interval);
         planned_dr_load.put(entry.getKey(), load);
       }
@@ -82,7 +82,7 @@ public class DSSRequestsJsonMapper {
     return planCurrentStatus;
   }
 
-  private static boolean isNotNull(HashMap<Integer, Double[]> map) {
+  private static boolean isNotNull(HashMap<String, Double[]> map) {
     return map != null;
   }
 

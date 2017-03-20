@@ -12,7 +12,8 @@ public class PlanCurrentStatus {
   public int plan_id;
   public int interval;
   public String unit;
-  public HashMap<Integer, Double[]> planned_dr;
-  public HashMap<Integer, Double[]> actual_dr;
+  public HashMap<String, Double[]> planned_dr;
+  public HashMap<String, Double[]> actual_dr;
+  public String type;
 
 }

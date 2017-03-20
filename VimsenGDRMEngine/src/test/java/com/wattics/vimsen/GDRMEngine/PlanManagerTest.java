@@ -13,19 +13,20 @@ import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetter;
 import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterException;
 import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterInterface;
 import com.wattics.vimsen.GDRMdatamanager.DatabaseSetUp;
-import com.wattics.vimsen.GDRMdatamanager.GDRMDataGetter;
-import com.wattics.vimsen.GDRMdatamanager.GDRMDataGetterInterface;
 import com.wattics.vimsen.GDRMdatamanager.GDRMDataStorer;
 import com.wattics.vimsen.GDRMdatamanager.GDRMDataStorerInterface;
+import com.wattics.vimsen.GDRMdatamanager.NoValidDataException;
+import com.wattics.vimsen.GDRMdatamanager.Validation;
 import com.wattics.vimsen.dbDAO.DataAccessLayerException;
 import com.wattics.vimsen.dbDAO.HibernateUtil;
 import com.wattics.vimsen.entities.MarketSignal;
 import com.wattics.vimsen.entities.Plan;
+import com.wattics.vimsen.utils.MapperException;
 import com.wattics.vimsen.utils.VimsenTestUtil;
 
 public class PlanManagerTest {
 
-  String testConfigurationFile = "schemaTestConfig.cfg.xml";
+  String testConfigurationFile = "localhostJavaTest.cfg.xml";
   HibernateUtil hibernateUtil;
   int numberProsumers = 30;
 
@@ -45,8 +46,8 @@ public class PlanManagerTest {
     DateTime dateTimeStart = DateTime.now().minusMinutes(20);
     String startTimeText = dateTimeStart.toString();
     Double[] reduction = new Double[] { 1.0, 2.0 };
-    List<Integer> primaryProsumers = VimsenTestUtil.asList(1, 2);
-    List<Integer> secondaryProsumers = VimsenTestUtil.asList(3, 4);
+    List<String> primaryProsumers = VimsenTestUtil.asList("Pr_1", "Pr_2");
+    List<String> secondaryProsumers = VimsenTestUtil.asList("Pr_3", "Pr_4");
     MarketSignal marketSignal = DatabaseSetUp.storeMarketSignal(hibernateUtil, startTimeText, dateTimeStart, reduction,
         primaryProsumers, secondaryProsumers);
     Plan plan = DatabaseSetUp.storePlan(hibernateUtil, marketSignal);
@@ -55,11 +56,12 @@ public class PlanManagerTest {
   }
 
   @Test
-  public void updatePlanIfNotUpdateTest() throws DataAccessLayerException, EDMSDataGetterException {
+  public void updatePlanIfNotUpdateTest()
+      throws DataAccessLayerException, EDMSDataGetterException, NoValidDataException, MapperException, InterruptedException {
     System.out.println("Run test updatePlanIfNotUpdateTest in PlanManager");
     int planId = storeMarketSignalAndPlan();
     String planIdString = "" + planId;
-    GDRMDataGetterInterface dataGetter = new GDRMDataGetter(hibernateUtil);
+    Validation dataGetter = new Validation(hibernateUtil);
     GDRMDataStorer dataStorer = new GDRMDataStorer(hibernateUtil);
     EDMSDataGetterInterface edmsDataGetter = new EDMSDataGetter();
 
@@ -69,10 +71,11 @@ public class PlanManagerTest {
   }
 
   @Test(expectedExceptions = ObjectNotFoundException.class)
-  public void throwExceptionIfPlanIsNotFound() throws DataAccessLayerException, EDMSDataGetterException {
+  public void throwExceptionIfPlanIsNotFound()
+      throws DataAccessLayerException, EDMSDataGetterException, NoValidDataException, MapperException, InterruptedException {
     System.out.println("Run test throwExceptionIfPlanIsNotFound in PlanManager");
     String planId = "10";
-    GDRMDataGetterInterface dataGetter = new GDRMDataGetter(hibernateUtil);
+    Validation dataGetter = new Validation(hibernateUtil);
     GDRMDataStorer dataStorer = new GDRMDataStorer(hibernateUtil);
     EDMSDataGetterInterface edmsDataGetter = new EDMSDataGetter();
 
@@ -80,14 +83,13 @@ public class PlanManagerTest {
   }
 
   @Test
-  public void selectPlansInRegisteredStatus() throws DataAccessLayerException {
+  public void selectPlansInRegisteredStatus() throws DataAccessLayerException, NoValidDataException {
     System.out.println("Run test selectPlansInRegisteredStatus in PlanManager");
     storeMarketSignalAndPlan();
-    GDRMDataGetterInterface dataGetter = new GDRMDataGetter(hibernateUtil);
+    Validation dataGetter = new Validation(hibernateUtil);
     GDRMDataStorerInterface dataStorer = new GDRMDataStorer(hibernateUtil);
-    EDMSDataGetterInterface edmsDataGetter = new EDMSDataGetter();
 
-    List<Plan> plans = PlanManager.selectPlansInRegisteredStatusToBeProcessed(dataGetter, dataStorer, edmsDataGetter);
+    List<Plan> plans = PlanManager.selectPlansInRegisteredStatusToBeProcessed(dataGetter, dataStorer);
 
     Assert.assertEquals(plans.size(), 1);
 

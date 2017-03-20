@@ -15,10 +15,10 @@ public class EDMSManagerTest {
   public void getForecastVGWMap() throws EDMSDataGetterException {
     Prosumer prosumer = new Prosumer(1);
     prosumer.setName("b827eb4c14af");
-    String equipmentName = DatabaseSetUp.DEFAULT_EQUIPMENT_NAME;
+    String equipmentName = DatabaseSetUp.DEFAULT_EQUIPMENT_CATEGORY;
     Instant startTime = new Instant("2016-04-06T08:29:00+02:00");
     Instant endTime = new Instant("2016-04-06T10:27:00+02:00");
-    int intervalDurationSec = 900;
+    int intervalDurationSec = 300;
     EDMSDataGetterInterface dataGetter = new EDMSDataGetter();
 
     Map<Long, Double> consumption = EDMSManager.getKwhForecastConsumptionVGWMap(prosumer, equipmentName, startTime, endTime,
@@ -38,7 +38,7 @@ public class EDMSManagerTest {
   public void getConsumptionVGWMap() throws EDMSDataGetterException {
     Prosumer prosumer = new Prosumer(1);
     prosumer.setName("b827eb4c14af");
-    String equipmentName = DatabaseSetUp.DEFAULT_EQUIPMENT_NAME;
+    String equipmentName = DatabaseSetUp.DEFAULT_EQUIPMENT_CATEGORY;
     Instant startTime = new Instant("2016-04-05T08:27:00+02:00");
     Instant endTime = new Instant("2016-04-05T10:27:00+02:00");
     int intervalDurationSec = 900;

@@ -19,7 +19,8 @@ public class PlanDaemon implements Daemon {
   private static Logger logger = LoggerFactory.getLogger(PlanDaemon.class);
   private static String configurationFile = "hibernate.cfg.xml";
   // private static String testConfigurationFile = "schemaTestConfig.cfg.xml";
-  // private static String localhostConftestFile ="localhostTestConfig.cfg.xml";
+  // private static String localhostConftestFile =
+  // "localhostTestConfig.cfg.xml";
   private static HibernateUtil hibernateUtil;
 
   public static void main(String[] args) throws InterruptedException {

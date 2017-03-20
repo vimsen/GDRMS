@@ -1,59 +1,67 @@
 package com.wattics.vimsen.GDRMEngine;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+import java.util.Random;
 
 import org.joda.time.DateTime;
 
-import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterException;
-import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterInterface;
-import com.wattics.vimsen.GDRMdatamanager.GDRMDataGetterInterface;
-import com.wattics.vimsen.GDRMdatamanager.GDRMDataGetterNoHib;
+import com.wattics.vimsen.GDRMdatamanager.GDRMDataGetterAndValidationInterface;
+import com.wattics.vimsen.GDRMdatamanager.NoValidDataException;
 import com.wattics.vimsen.dbDAO.DataAccessLayerException;
 import com.wattics.vimsen.entities.Action;
 import com.wattics.vimsen.entities.MarketSignal;
 import com.wattics.vimsen.entities.Plan;
 import com.wattics.vimsen.entities.PlanHasAction;
-import com.wattics.vimsen.entities.PlanHasActionId;
 import com.wattics.vimsen.entities.Prosumer;
 import com.wattics.vimsen.utils.FormatConverter;
 import com.wattics.vimsen.utils.MapperException;
 
 public class PlanGenerator {
 
-  public static List<PlanHasAction> generatePlanActionsMap(int planId, GDRMDataGetterInterface dataGetter,
-      EDMSDataGetterInterface edmsDataGetter) throws EDMSDataGetterException, MapperException, DataAccessLayerException {
-    List<PlanHasAction> plannedActions = new ArrayList<PlanHasAction>();
+  private final static int MAXIMUM_NUMBER_ACTIONS = 7;
+  private static Random randomizer = new Random();
+
+  public static List<PlanHasAction> generatePlanActionsFromSla(int planId, GDRMDataGetterAndValidationInterface dataGetter)
+      throws MapperException, DataAccessLayerException, NoValidDataException {
     Plan plan = dataGetter.getPlan(planId);
     MarketSignal marketSignal = plan.getMarketSignal();
-    List<Prosumer> prosumers = GDRMDataGetterNoHib.getPrimaryProsumersFromMarketSignal(marketSignal);
-    List<Action> actions = new ArrayList<Action>();
-    for (Prosumer prosumer : prosumers) {
-      List<Action> prosumerActions = dataGetter.getActionsFromProsumer(prosumer);
-      Action selectedAction = DataPlanGetter.selectProsumerAction(prosumerActions);
-      actions.add(selectedAction);
-    }
+    List<Prosumer> prosumers = dataGetter.getPrimaryProsumersFromMarketSignal(marketSignal);
 
     String targetReductionString = marketSignal.getAmountReduction();
     Double[] targetReduction = FormatConverter.stringToArrayDouble(targetReductionString);
 
-    List<Map<Long, Double>> forecastAmount = DataPlanGetter.getProsumersForecastConsumptionFromEDMSMap(prosumers,
-        marketSignal.getStartTime(), marketSignal.getEndTime(), marketSignal.getTimeInterval(), edmsDataGetter);
-    List<Double[]> plannedAmount = DRReductionCalculator.createBalancedPlanPrimaryProsumersMap(targetReduction, prosumers,
-        forecastAmount, marketSignal.getStartTime(), marketSignal.getEndTime(), marketSignal.getTimeInterval());
+    List<PlanHasAction> plannedActions = createReductionPlanFromSla(dataGetter, marketSignal, planId, targetReduction, prosumers);
 
-    for (int i = 0; i < actions.size(); i++) {
-      PlanHasActionId plannedActionId = new PlanHasActionId(planId, actions.get(i).getId());
-      PlanHasAction plannedAction = new PlanHasAction();
-      plannedAction.setId(plannedActionId);
-      plannedAction.setTStart(marketSignal.getStartTime());
-      plannedAction.setPlannedAmount(Arrays.toString(plannedAmount.get(i)));
-      plannedAction.setUpdatedActualAt(marketSignal.getStartTime());
-      plannedActions.add(plannedAction);
-    }
     return plannedActions;
+  }
+
+  public static List<PlanHasAction> createReductionPlanFromSla(GDRMDataGetterAndValidationInterface dataGetter,
+      MarketSignal marketSignal, int planId, Double[] targetReduction, List<Prosumer> prosumers)
+      throws DataAccessLayerException, NoValidDataException {
+    List<Action> actions = dataGetter.getActionsFromProsumers(prosumers);
+    List<Action> validActions = DRReductionCalculator.selectValidActions(actions, marketSignal);
+
+    List<Action> subSelectionValidAction = selectSubGroupOfValidActions(validActions, MAXIMUM_NUMBER_ACTIONS);
+
+    List<PlanHasAction> drActions = DRReductionCalculator.selectActionsToAchieveReduction(subSelectionValidAction,
+        targetReduction, marketSignal, planId, dataGetter);
+
+    return drActions;
+  }
+
+  private static List<Action> selectSubGroupOfValidActions(List<Action> validActions, int maximumNumberActions) {
+    if (validActions.size() < maximumNumberActions) {
+      return validActions;
+    }
+
+    List<Action> selectedActions = new ArrayList<>();
+    for (int i = 0; i < maximumNumberActions; i++) {
+      Action randomAction = validActions.get(randomizer.nextInt(validActions.size()));
+      selectedActions.add(randomAction);
+      validActions.remove(randomAction);
+    }
+    return selectedActions;
   }
 
   public static boolean generatedActionsAreValid(List<PlanHasAction> plannedActions) {

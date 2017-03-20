@@ -11,7 +11,8 @@ import org.joda.time.DateTime;
 import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterException;
 import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterInterface;
 import com.wattics.vimsen.EDMSdatamanager.EDMSManager;
-import com.wattics.vimsen.GDRMdatamanager.GDRMDataGetterInterface;
+import com.wattics.vimsen.GDRMdatamanager.GDRMDataGetterAndValidationInterface;
+import com.wattics.vimsen.GDRMdatamanager.NoValidDataException;
 import com.wattics.vimsen.dbDAO.DataAccessLayerException;
 import com.wattics.vimsen.entities.Action;
 import com.wattics.vimsen.entities.Equipment;
@@ -24,8 +25,8 @@ import com.wattics.vimsen.general.DefaultSettings;
 public class DataPlanGetter {
 
   public static Map<Long, Double> getActionForecastConsumptionFromEDMSMap(EDMSDataGetterInterface edmsDataGetter,
-      GDRMDataGetterInterface dataGetter, MarketSignal marketSignal, Plan plan, PlanHasAction planHasAction, DateTime startTime,
-      DateTime endTime) throws EDMSDataGetterException, DataAccessLayerException {
+      GDRMDataGetterAndValidationInterface dataGetter, MarketSignal marketSignal, Plan plan, PlanHasAction planHasAction,
+      DateTime startTime, DateTime endTime) throws EDMSDataGetterException, DataAccessLayerException, NoValidDataException {
     Action action = planHasAction.getAction();
     Equipment equipment = action.getEquipment();
     Prosumer prosumer = dataGetter.getProsumerFromActionId(action.getId());
@@ -35,8 +36,8 @@ public class DataPlanGetter {
   }
 
   public static Map<Long, Double> getActionActualConsumptionFromEDMSMap(EDMSDataGetterInterface edmsDataGetter,
-      GDRMDataGetterInterface dataGetter, MarketSignal marketSignal, Plan plan, PlanHasAction planHasAction, DateTime startTime,
-      DateTime endTime) throws DataAccessLayerException, EDMSDataGetterException {
+      GDRMDataGetterAndValidationInterface dataGetter, MarketSignal marketSignal, Plan plan, PlanHasAction planHasAction,
+      DateTime startTime, DateTime endTime) throws DataAccessLayerException, EDMSDataGetterException, NoValidDataException {
     Action action = planHasAction.getAction();
     Equipment equipment = action.getEquipment();
     Prosumer prosumer = dataGetter.getProsumerFromActionId(action.getId());

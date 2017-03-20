@@ -9,14 +9,12 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetter;
 import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterException;
-import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterInterface;
 import com.wattics.vimsen.GDRMdatamanager.DatabaseSetUp;
-import com.wattics.vimsen.GDRMdatamanager.GDRMDataGetter;
-import com.wattics.vimsen.GDRMdatamanager.GDRMDataGetterInterface;
 import com.wattics.vimsen.GDRMdatamanager.GDRMDataStorer;
 import com.wattics.vimsen.GDRMdatamanager.GDRMDataStorerInterface;
+import com.wattics.vimsen.GDRMdatamanager.NoValidDataException;
+import com.wattics.vimsen.GDRMdatamanager.Validation;
 import com.wattics.vimsen.dbDAO.DataAccessLayerException;
 import com.wattics.vimsen.dbDAO.HibernateUtil;
 import com.wattics.vimsen.entities.MarketSignal;
@@ -26,7 +24,7 @@ import com.wattics.vimsen.utils.MapperException;
 import com.wattics.vimsen.utils.VimsenTestUtil;
 
 public class PlanStorerTest {
-  private String testConfigurationFile = "schemaTestConfig.cfg.xml";
+  private String testConfigurationFile = "localhostJavaTest.cfg.xml";
   private HibernateUtil hibernateUtil;
   private int numberProsumers = 26;
 
@@ -34,8 +32,8 @@ public class PlanStorerTest {
     String startTimeText = "2015-11-19T13:00:00.000+02:00";
     DateTime dateTimeStart = new DateTime(startTimeText);
     Double[] reduction = new Double[] { 1.0, 2.0 };
-    List<Integer> primaryProsumers = VimsenTestUtil.asList(1, 2);
-    List<Integer> secondaryProsumers = VimsenTestUtil.asList(3, 4);
+    List<String> primaryProsumers = VimsenTestUtil.asList("Pr_1", "Pr_2");
+    List<String> secondaryProsumers = VimsenTestUtil.asList("Pr_3", "Pr_4");
     MarketSignal marketSignal = DatabaseSetUp.storeMarketSignal(hibernateUtil, startTimeText, dateTimeStart, reduction,
         primaryProsumers, secondaryProsumers);
     Plan plan = DatabaseSetUp.storePlan(hibernateUtil, marketSignal);
@@ -52,13 +50,13 @@ public class PlanStorerTest {
   }
 
   @Test
-  public void generateAndStorePlanActions() throws DataAccessLayerException, EDMSDataGetterException, MapperException {
+  public void generateAndStorePlanActions()
+      throws DataAccessLayerException, EDMSDataGetterException, MapperException, NoValidDataException {
     System.out.println("Run test generateAndStorePlanActions in PlanStorer");
     int planId = storeMarketSignalAndPlan();
-    GDRMDataGetterInterface dataGetter = new GDRMDataGetter(hibernateUtil);
+    Validation dataGetter = new Validation(hibernateUtil);
     GDRMDataStorerInterface dataStorer = new GDRMDataStorer(hibernateUtil);
-    EDMSDataGetterInterface edmsDataGetter = new EDMSDataGetter();
-    List<PlanHasAction> plannedActions = PlanGenerator.generatePlanActionsMap(planId, dataGetter, edmsDataGetter);
+    List<PlanHasAction> plannedActions = PlanGenerator.generatePlanActionsFromSla(planId, dataGetter);
 
     PlanStorer.storeGeneratedPlanActions(planId, plannedActions, dataStorer);
 

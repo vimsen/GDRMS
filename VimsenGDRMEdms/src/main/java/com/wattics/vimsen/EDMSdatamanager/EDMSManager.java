@@ -20,7 +20,7 @@ public class EDMSManager {
     Instant endTimeDayAhead = endTime.minus(TimeHelpers.MS_IN_A_DAY);
 
     String prosumerReference = prosumer.getName();
-    String preparedUrl = generateGetVGWUrl(prosumerReference, startTimeDayAhead, endTimeDayAhead);
+    String preparedUrl = generateGetVGWUrl(prosumerReference, startTimeDayAhead, endTimeDayAhead, intervalDurationSec);
     EDMSMeasurement prosMeasurements = dataGetter.getEDMSMeasurementFromVGWUrl(preparedUrl);
     TreeMap<Long, Double> kwhForecastValues = getConsumptionForecastValuesFromEDMSMeasurementMap(prosMeasurements, startTime,
         endTime, intervalDurationSec);
@@ -40,7 +40,7 @@ public class EDMSManager {
 
     Instant startBorder = startTime.plus(timeInterval * TimeHelpers.MS_IN_A_SEC).minus(TimeHelpers.MS_IN_A_SEC);
     Instant endBorder = endTime.plus(timeInterval * TimeHelpers.MS_IN_A_SEC);
-    
+
     for (HashMap<DateTime, Double> forecastValue : forecastConsumption) {
       for (Entry<DateTime, Double> valueEntry : forecastValue.entrySet()) {
 
@@ -61,7 +61,7 @@ public class EDMSManager {
     Instant startTimeSecAhead = startTime.minus(TimeHelpers.MS_IN_A_SEC).minus(60 * 60 * 1000);
     Instant endTimeSecAhead = endTime.plus(60 * 60 * 1000);
     String prosumerReference = prosumer.getName();
-    String preparedUrl = generateGetVGWUrl(prosumerReference, startTimeSecAhead, endTimeSecAhead);
+    String preparedUrl = generateGetVGWUrl(prosumerReference, startTimeSecAhead, endTimeSecAhead, intervalDurationSec);
 
     EDMSMeasurement prosMeasurements = dataGetter.getEDMSMeasurementFromVGWUrl(preparedUrl);
     TreeMap<Long, Double> kwh15mnValues = getConsumptionValuesFromEDMSMeasurementMap(prosMeasurements, startTime, endTime,
@@ -76,7 +76,7 @@ public class EDMSManager {
     int offset = 1000 * timeInterval;
     Instant startBorder = startTime.plus(timeInterval * TimeHelpers.MS_IN_A_SEC).minus(TimeHelpers.MS_IN_A_SEC);
     Instant endBorder = endTime.plus(timeInterval * TimeHelpers.MS_IN_A_SEC);
-    
+
     for (HashMap<DateTime, Double> currentValue : consumptions) {
       for (Entry<DateTime, Double> valueEntry : currentValue.entrySet()) {
 
@@ -92,12 +92,12 @@ public class EDMSManager {
     return consumptionSelection;
   }
 
-  public static String generateGetVGWUrl(String prosumerName, Instant startTime, Instant endTime) {
+  public static String generateGetVGWUrl(String prosumerName, Instant startTime, Instant endTime, int timeInterval) {
     String url = "https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/getdataVGW?";
     String prosumerUrl = "prosumers=" + prosumerName;
     String startdateUrl = "startdate=" + TimeHelpers.convertInstantToString(startTime);
     String enddateUrl = "enddate=" + TimeHelpers.convertInstantToString(endTime);
-    String slotSize = "interval=900";
+    String slotSize = "interval=" + timeInterval;
     String pointer = "pointer=2";
 
     String preparedUrl = url + prosumerUrl + "&" + startdateUrl + "&" + enddateUrl + "&" + slotSize + "&" + pointer;

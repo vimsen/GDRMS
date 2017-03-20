@@ -14,7 +14,7 @@ import org.hibernate.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.wattics.vimsen.EDMSdatamanager.EDMSDataGetterException;
+import com.wattics.vimsen.GDRMdatamanager.NoValidDataException;
 import com.wattics.vimsen.GDRMmanager.DSSManager;
 import com.wattics.vimsen.dbDAO.DataAccessLayerException;
 import com.wattics.vimsen.dbDAO.HibernateUtil;
@@ -26,9 +26,9 @@ import com.wattics.vimsen.utils.MapperException;
 public class DSSRequest extends HttpServlet {
   private static Logger logger = LoggerFactory.getLogger(DSSRequest.class);
   private static final long serialVersionUID = 1L;
-  // String localhostConftestFile = "localhostTestConfig.cfg.xml";
+   String localhostConftestFile = "localhostTestConfig.cfg.xml";
   // String testConfigurationFile = "schemaTestConfig.cfg.xml";
-  private String configurationFile = "hibernate.cfg.xml";
+//  private String configurationFile = "hibernate.cfg.xml";
   private HibernateUtil hibernateUtil;
   private DSSManager dssRequestManager;
 
@@ -37,7 +37,7 @@ public class DSSRequest extends HttpServlet {
    */
   public DSSRequest() {
     super();
-    hibernateUtil = new HibernateUtil(configurationFile);
+    hibernateUtil = new HibernateUtil(localhostConftestFile);
     this.dssRequestManager = new DSSManager(hibernateUtil);
   }
 
@@ -70,9 +70,6 @@ public class DSSRequest extends HttpServlet {
         logger.info("Get request for plan id " + planId);
         responseJson = dssRequestManager.getPlanCurrentStatusMap(planId);
         logger.info("Response to request for plan id " + planId + ": " + responseJson);
-      } catch (EDMSDataGetterException e) {
-        response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-        logger.error("Could not get the necessary information from the EDMS fore requested plan id " + planId + ". ", e);
       } catch (MapperException e) {
         response.sendError(HttpServletResponse.SC_BAD_REQUEST);
         logger.error("Could not map information for requested plan id " + planId + ". ", e);
@@ -85,6 +82,9 @@ public class DSSRequest extends HttpServlet {
       } catch (RuntimeException e) {
         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         logger.error("Runtime error for requested plan id " + planId + ". ", e);
+      } catch (NoValidDataException e) {
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        logger.error("Invalid data for requested plan id " + planId + ". ", e);
       }
       PrintWriter out = response.getWriter();
       out.println(responseJson);
@@ -121,6 +121,9 @@ public class DSSRequest extends HttpServlet {
       } catch (RuntimeException e) {
         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         logger.error("Runtime error for DSS post request :" + packetReceived, e);
+      } catch (NoValidDataException e) {
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        logger.error("Invalid data for DSS post request :" + packetReceived, e);
       }
       PrintWriter out = response.getWriter();
       out.println(responseJson);
