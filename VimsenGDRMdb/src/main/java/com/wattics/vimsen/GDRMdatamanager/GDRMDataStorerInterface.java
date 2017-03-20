@@ -11,11 +11,11 @@ import com.wattics.vimsen.entities.Site;
 import com.wattics.vimsen.entities.SiteMetric;
 
 public interface GDRMDataStorerInterface {
-  
+
   public void storeSiteMetric(SiteMetric siteMetric) throws DataAccessLayerException;
-  
+
   public void storeSite(Site site) throws DataAccessLayerException;
-  
+
   public void storeKwh15mn(Kwh15mn kwh15mn) throws DataAccessLayerException;
 
   public void storeKwForecast(KwhForecast forecastValue) throws DataAccessLayerException;
@@ -25,9 +25,11 @@ public interface GDRMDataStorerInterface {
   public void storeProsumersAvailableParticipate(DssSelectedProsumer prosumerAvailable) throws DataAccessLayerException;
 
   public void storePlan(Plan plan) throws DataAccessLayerException;
-  
+
   public void storePlanHasAction(PlanHasAction planHasAction) throws DataAccessLayerException;
 
   public void updatePlanStatus(int planId, String newStatus) throws DataAccessLayerException;
+
+  public void storeDssSelectedProsumers(DssSelectedProsumer dssProsumer) throws DataAccessLayerException;
 
 }

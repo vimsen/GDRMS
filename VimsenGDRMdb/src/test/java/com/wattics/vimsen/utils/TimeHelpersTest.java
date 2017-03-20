@@ -163,4 +163,36 @@ public class TimeHelpersTest {
     Assert.assertEquals(actualDate, expectedDate);
   }
 
+  @Test
+  public void convertDateTimeToLocalHour() {
+    String time = "2016-01-10T20:30:00.000+02:00";
+    String timeToConv = "2016-01-22T18:30:00.000+00:00";
+    DateTime dateTimeToConvert = new DateTime(timeToConv);
+
+    int actualHour = TimeHelpers.getLocalTimeHour(time, dateTimeToConvert);
+
+    int expectedHour = 20;
+    Assert.assertEquals(actualHour, expectedHour);
+  }
+
+  @Test
+  public void convertDateTimeToLocalHourNegativeDurationDifference() {
+    String time = "2016-01-10T20:30:00+00:00";
+    String timeToConv = "2016-01-10T21:30:00+01:00";
+    DateTime dateTimeToConvert = new DateTime(timeToConv);
+
+    int actualHour = TimeHelpers.getLocalTimeHour(time, dateTimeToConvert);
+
+    int expectedHour = 20;
+    Assert.assertEquals(actualHour, expectedHour);
+  }
+
+  @Test
+  public void convertDateTimeToDateString() {
+    DateTime datetime = new DateTime("2016-11-10T21:30:00.000+01:00");
+    String dateString = TimeHelpers.convertDateTimeToDateString(datetime);
+
+    Assert.assertEquals(dateString, "2016-11-10");
+  }
+
 }

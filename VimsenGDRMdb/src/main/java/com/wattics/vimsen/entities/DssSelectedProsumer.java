@@ -1,5 +1,7 @@
 package com.wattics.vimsen.entities;
 
+import javax.validation.constraints.NotNull;
+
 // Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1
 
 /**
@@ -7,10 +9,23 @@ package com.wattics.vimsen.entities;
  */
 public class DssSelectedProsumer implements java.io.Serializable {
 
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   private DssSelectedProsumerId id;
   private MarketSignal marketSignal;
   private Prosumer prosumer;
+  @NotNull
   private Boolean isPrimary;
+  @NotNull
+  private Boolean recomRegisteredSent;
+  @NotNull
+  private Boolean recomReminderSent;
+  @NotNull
+  private Boolean recomSummarySent;
+  private Boolean isSelected;
+  private Boolean recomLongReminderSent;
 
   public DssSelectedProsumer() {
   }
@@ -26,6 +41,20 @@ public class DssSelectedProsumer implements java.io.Serializable {
     this.marketSignal = marketSignal;
     this.prosumer = prosumer;
     this.isPrimary = isPrimary;
+  }
+
+  public DssSelectedProsumer(DssSelectedProsumerId id, MarketSignal marketSignal, Prosumer prosumer, Boolean isPrimary,
+      Boolean recomRegisteredSent, Boolean recomReminderSent, Boolean recomSummarySent, Boolean isSelected,
+      Boolean longReminderSent) {
+    this.id = id;
+    this.marketSignal = marketSignal;
+    this.prosumer = prosumer;
+    this.isPrimary = isPrimary;
+    this.setRecomRegisteredSent(recomRegisteredSent);
+    this.setRecomReminderSent(recomReminderSent);
+    this.setRecomSummarySent(recomSummarySent);
+    this.setIsSelected(isSelected);
+    this.setRecomLongReminderSent(longReminderSent);
   }
 
   public DssSelectedProsumerId getId() {
@@ -58,6 +87,46 @@ public class DssSelectedProsumer implements java.io.Serializable {
 
   public void setIsPrimary(Boolean isPrimary) {
     this.isPrimary = isPrimary;
+  }
+
+  public Boolean getRecomRegisteredSent() {
+    return recomRegisteredSent;
+  }
+
+  public void setRecomRegisteredSent(Boolean recomRegisteredSent) {
+    this.recomRegisteredSent = recomRegisteredSent;
+  }
+
+  public Boolean getRecomReminderSent() {
+    return recomReminderSent;
+  }
+
+  public void setRecomReminderSent(Boolean recomReminderSent) {
+    this.recomReminderSent = recomReminderSent;
+  }
+
+  public Boolean getIsSelected() {
+    return isSelected;
+  }
+
+  public void setIsSelected(Boolean isSelected) {
+    this.isSelected = isSelected;
+  }
+
+  public Boolean getRecomSummarySent() {
+    return recomSummarySent;
+  }
+
+  public void setRecomSummarySent(Boolean recomSummarySent) {
+    this.recomSummarySent = recomSummarySent;
+  }
+
+  public Boolean getRecomLongReminderSent() {
+    return recomLongReminderSent;
+  }
+
+  public void setRecomLongReminderSent(Boolean recomLongReminderSent) {
+    this.recomLongReminderSent = recomLongReminderSent;
   }
 
 }

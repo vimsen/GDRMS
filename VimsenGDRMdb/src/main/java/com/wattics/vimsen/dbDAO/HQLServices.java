@@ -1,5 +1,7 @@
 package com.wattics.vimsen.dbDAO;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -32,6 +34,26 @@ public class HQLServices {
       }
     }
     return queryResult;
+  }
+
+  public List selectWhereCondition(String selectQuery) throws DataAccessLayerException {
+    Session session = null;
+    List result = null;
+    try {
+      session = hibernateUtil.openSession();
+      tx = session.beginTransaction();
+      String hql = selectQuery;
+      Query query = session.createQuery(hql);
+      result = query.list();
+      tx.commit();
+    } catch (HibernateException e) {
+      handleException(e);
+    } finally {
+      if (session != null) {
+        session.close();
+      }
+    }
+    return result;
   }
 
   protected void handleException(HibernateException e) throws DataAccessLayerException {

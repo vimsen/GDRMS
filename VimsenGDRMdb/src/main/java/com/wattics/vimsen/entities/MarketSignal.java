@@ -4,6 +4,10 @@ package com.wattics.vimsen.entities;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.joda.time.DateTime;
 
 /**
@@ -13,14 +17,20 @@ public class MarketSignal implements java.io.Serializable {
 
   private Integer id;
   private DsoTerritory dsoTerritory;
+  @NotNull
   private DateTime startTime;
   private DateTime endTime;
+  @NotNull
   private String amountReduction;
   private DateTime signalDate;
   private Boolean achieved;
+  @NotNull
   private Integer timeInterval;
+  @NotNull
   private String unit;
+  @NotNull
   private String startTimeText;
+  private String type;
   private Set plans = new HashSet(0);
   private Set dssSelectedProsumers = new HashSet(0);
 
@@ -32,7 +42,7 @@ public class MarketSignal implements java.io.Serializable {
   }
 
   public MarketSignal(DsoTerritory dsoTerritory, DateTime startTime, DateTime endTime, String amountReduction,
-      DateTime signalDate, Boolean achieved, Integer timeInterval, String unit, String startTimeText, Set plans,
+      DateTime signalDate, Boolean achieved, Integer timeInterval, String unit, String startTimeText, String type, Set plans,
       Set dssSelectedProsumers) {
     this.dsoTerritory = dsoTerritory;
     this.startTime = startTime;
@@ -43,6 +53,7 @@ public class MarketSignal implements java.io.Serializable {
     this.timeInterval = timeInterval;
     this.unit = unit;
     this.startTimeText = startTimeText;
+    this.type = type;
     this.plans = plans;
     this.dssSelectedProsumers = dssSelectedProsumers;
   }
@@ -125,6 +136,14 @@ public class MarketSignal implements java.io.Serializable {
 
   public void setStartTimeText(String startTimeText) {
     this.startTimeText = startTimeText;
+  }
+
+  public String getType() {
+    return this.type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 
   public Set getPlans() {

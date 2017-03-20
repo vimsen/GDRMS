@@ -6,11 +6,16 @@ import java.util.Set;
 
 import org.hibernate.ObjectNotFoundException;
 import org.joda.time.DateTime;
+import org.joda.time.Instant;
 
 import com.wattics.vimsen.dbDAO.DataAccessLayerException;
+import com.wattics.vimsen.dbDAO.HQLServices;
 import com.wattics.vimsen.dbDAO.HibernateUtil;
 import com.wattics.vimsen.entities.Action;
+import com.wattics.vimsen.entities.ActionSla;
+import com.wattics.vimsen.entities.ControlSignal;
 import com.wattics.vimsen.entities.DsoTerritory;
+import com.wattics.vimsen.entities.DssSelectedProsumer;
 import com.wattics.vimsen.entities.Equipment;
 import com.wattics.vimsen.entities.Kwh15mn;
 import com.wattics.vimsen.entities.Kwh15mnId;
@@ -18,12 +23,14 @@ import com.wattics.vimsen.entities.KwhForecast;
 import com.wattics.vimsen.entities.KwhForecastId;
 import com.wattics.vimsen.entities.MarketSignal;
 import com.wattics.vimsen.entities.Plan;
+import com.wattics.vimsen.entities.PlanHasAction;
 import com.wattics.vimsen.entities.Prosumer;
 import com.wattics.vimsen.entities.ProsumerHasSite;
 import com.wattics.vimsen.entities.Site;
 import com.wattics.vimsen.entities.SiteMetric;
 import com.wattics.vimsen.entities_services.ActionService;
 import com.wattics.vimsen.entities_services.DsoTerritoryService;
+import com.wattics.vimsen.entities_services.DssSelectedProsumerService;
 import com.wattics.vimsen.entities_services.EquipmentService;
 import com.wattics.vimsen.entities_services.Kwh15mnService;
 import com.wattics.vimsen.entities_services.KwhForecastService;
@@ -33,7 +40,8 @@ import com.wattics.vimsen.entities_services.ProsumerService;
 import com.wattics.vimsen.entities_services.SiteMetricService;
 import com.wattics.vimsen.entities_services.SiteService;
 import com.wattics.vimsen.general.DefaultSettings;
-import com.wattics.vimsen.general.EquipmentNameEnum;
+import com.wattics.vimsen.general.EquipmentCategory;
+import com.wattics.vimsen.utils.TimeHelpers;
 
 public class GDRMDataGetter implements GDRMDataGetterInterface {
 
@@ -44,7 +52,6 @@ public class GDRMDataGetter implements GDRMDataGetterInterface {
   }
 
   public Site getSite(int siteId) throws DataAccessLayerException {
-
     SiteService siteService = new SiteService(hibernateUtil);
     Site site = siteService.find(siteId);
     return site;
@@ -169,28 +176,194 @@ public class GDRMDataGetter implements GDRMDataGetterInterface {
   }
 
   @Override
-  public List<Plan> getPlansWithStatus(String string) throws DataAccessLayerException {
-    PlanService planService = new PlanService(hibernateUtil);
-    @SuppressWarnings("unchecked")
-    List<Plan> plans = (List<Plan>) planService.findAll();
-    List<Plan> plansWithStatus = new ArrayList<Plan>();
-    for (Plan plan : plans) {
-      if (plan.getStatus().equals(string)) {
-        plansWithStatus.add(plan);
-      }
-    }
-    return plansWithStatus;
+  public List<Plan> getPlansWithStatus(String planStatus) throws DataAccessLayerException {
+    String query = "FROM Plan as p WHERE p.status= '" + planStatus + "'";
+    HQLServices hqlServices = new HQLServices(hibernateUtil);
+    List<Plan> plans = hqlServices.selectWhereCondition(query);
+
+    return plans;
   }
 
   public KwhForecast getKwhForecastFromProsumer(Prosumer prosumer, String parameterType, DateTime date)
       throws DataAccessLayerException {
     Site site = getSiteFromProsumerId(prosumer.getId());
     List<Equipment> equipmentList = GDRMDataGetterNoHib.getEquipmentFromSite(site);
-    Equipment equipment = GDRMDataGetterNoHib.selectEquipmentByName(equipmentList, EquipmentNameEnum.CONSUMPTION.toString());
+    Equipment equipment = GDRMDataGetterNoHib.selectEquipmentByCategory(equipmentList, EquipmentCategory.CONSUMPTION.toString());
     KwhForecastId forecastId = new KwhForecastId(date, equipment.getId(), parameterType);
     KwhForecastService kwhForecastService = new KwhForecastService(hibernateUtil);
     KwhForecast kwhForecast = kwhForecastService.find(forecastId);
     return kwhForecast;
+  }
+
+  @Override
+  public Equipment getEquipmentFromActionId(int actionId) throws DataAccessLayerException {
+    ActionService actionService = new ActionService(hibernateUtil);
+    Action action = actionService.find(actionId);
+    Equipment equipment = action.getEquipment();
+
+    return equipment;
+  }
+
+  @Override
+  public ControlSignal getControlSignalFromActionId(int actionId) throws DataAccessLayerException {
+    ActionService actionService = new ActionService(hibernateUtil);
+    Action action = actionService.find(actionId);
+    ControlSignal controlSignal = action.getControlSignal();
+    return controlSignal;
+  }
+
+  public List<Action> getActionsFromProsumers(List<Prosumer> prosumers) throws DataAccessLayerException {
+    List<Action> actions = new ArrayList<Action>();
+    for (Prosumer prosumer : prosumers) {
+      List<Action> actionsProsumer = getActionsFromProsumerId(prosumer.getId());
+      actions.addAll(actionsProsumer);
+    }
+    return actions;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public DssSelectedProsumer getDssFromProsumerAndMarketSignal(MarketSignal marketSignal, Prosumer prosumer)
+      throws DataAccessLayerException {
+    DssSelectedProsumer dssProsumer = null;
+    int msId = marketSignal.getId();
+    int pId = prosumer.getId();
+    String query = "FROM DssSelectedProsumer as p where p.id.prosumerId= '" + pId + "' and p.id.marketSignalId= '" + msId + "'";
+    HQLServices hqlServices = new HQLServices(hibernateUtil);
+    List<DssSelectedProsumer> dssProsumers = hqlServices.selectWhereCondition(query);
+    if (dssProsumers.size() > 0) {
+      dssProsumer = dssProsumers.get(0);
+    }
+
+    return dssProsumer;
+  }
+
+  @Override
+  public List<Prosumer> getProsumerWithActionToImplement(MarketSignal marketSignal) throws DataAccessLayerException {
+    // TODO: modify with query
+    List<Prosumer> prosumers = new ArrayList<>();
+    List<Plan> plans = getPlansFromMarketSignal(marketSignal);
+    for (Plan plan : plans) {
+
+      Set<PlanHasAction> planActions = plan.getPlanHasActions();
+      for (PlanHasAction planAction : planActions) {
+        Prosumer prosumer = getProsumerToImplementAction(planAction);
+        if (!prosumers.contains(prosumer)) {
+          prosumers.add(prosumer);
+        }
+      }
+    }
+    return prosumers;
+  }
+
+  @Override
+  public List<PlanHasAction> getActionsAssignedToAProsumerForAMarketSignal(MarketSignal marketSignal, Prosumer prosumer)
+      throws DataAccessLayerException {
+    // TODO: modify with query
+    List<PlanHasAction> planActionsProsumer = new ArrayList<>();
+    List<Plan> plans = getPlansFromMarketSignal(marketSignal);
+    for (Plan plan : plans) {
+      Set<PlanHasAction> planActions = plan.getPlanHasActions();
+      for (PlanHasAction planAction : planActions) {
+        Prosumer prosumerAction = getProsumerToImplementAction(planAction);
+        if (prosumer.getId() == prosumerAction.getId()) {
+          planActionsProsumer.add(planAction);
+        }
+      }
+    }
+    return planActionsProsumer;
+  }
+
+  @Override
+  public Prosumer getProsumerToImplementAction(PlanHasAction planHasAction) throws DataAccessLayerException {
+    // TODO: modify with query
+    Prosumer prosumer = null;
+    Action action = planHasAction.getAction();
+    Equipment equipment = action.getEquipment();
+    Site site = equipment.getSite();
+    Set<ProsumerHasSite> prosumerHasSite = site.getProsumerHasSites();
+    for (ProsumerHasSite phs : prosumerHasSite) {
+      prosumer = phs.getProsumer();
+      return prosumer;
+    }
+    return prosumer;
+  }
+
+  @Override
+  public List<MarketSignal> getMarketSignalWithinOneDay() throws DataAccessLayerException {
+    // TODO: modify with query
+    MarketSignalService marketSignalService = new MarketSignalService(hibernateUtil);
+    List<MarketSignal> msAll = (List<MarketSignal>) marketSignalService.findAll();
+    List<MarketSignal> msSelected = new ArrayList<MarketSignal>();
+    if (msAll.size() > 0) {
+      for (MarketSignal ms : msAll) {
+
+        DateTime start = ms.getStartTime();
+        DateTime end = ms.getEndTime();
+
+        Instant startMinusOneDay = start.minus(TimeHelpers.MS_IN_A_DAY).toInstant();
+        Instant endPlusOneDay = end.plus(TimeHelpers.MS_IN_A_DAY).toInstant();
+
+        if ((startMinusOneDay.isBefore(Instant.now())) && (endPlusOneDay.isAfter(Instant.now()))) {
+          msSelected.add(ms);
+        }
+      }
+    }
+    return msSelected;
+  }
+
+  @Override
+  public List<Prosumer> getPrimaryProsumersFromMarketSignal(MarketSignal marketSignal) throws DataAccessLayerException {
+    // TODO: finish testing
+    ProsumerService prosumerService = new ProsumerService(hibernateUtil);
+    List<Prosumer> prosumers = new ArrayList<Prosumer>();
+    Set<DssSelectedProsumer> dssProsumersSet = marketSignal.getDssSelectedProsumers();
+    List<DssSelectedProsumer> dssProsumers = new ArrayList<DssSelectedProsumer>(dssProsumersSet);
+    for (DssSelectedProsumer dssProsumer : dssProsumers) {
+      if (dssProsumer.getIsPrimary()) {
+        Prosumer prosumer = dssProsumer.getProsumer();
+        prosumers.add(prosumerService.find(prosumer.getId()));
+      }
+    }
+    return prosumers;
+  }
+
+  @Override
+  public List<Plan> getPlansFromMarketSignal(MarketSignal marketSignal) throws DataAccessLayerException {
+    Integer msId = marketSignal.getId();
+    String query = "FROM Plan where marketSignal.id=" + msId.toString();
+    HQLServices hqlServices = new HQLServices(hibernateUtil);
+    List<Plan> plans = hqlServices.selectWhereCondition(query);
+
+    return plans;
+  }
+
+  @Override
+  public Prosumer getProsumerFromName(String prosumerName) throws DataAccessLayerException {
+    Prosumer prosumer = null;
+    String query = "FROM Prosumer as p where p.name= '" + prosumerName + "'";
+    HQLServices hqlServices = new HQLServices(hibernateUtil);
+    List<Prosumer> prosumers = hqlServices.selectWhereCondition(query);
+    prosumer = prosumers.get(0);
+    return prosumer;
+  }
+
+  @Override
+  public Equipment getEquipmentFromPlanHasAction(PlanHasAction planAction) throws DataAccessLayerException {
+    Integer actionId = planAction.getAction().getId();
+    Equipment eq = getEquipmentFromActionId(actionId);
+    return eq;
+  }
+
+  @Override
+  public ActionSla getActionSlaFromActionId(int actionId) throws DataAccessLayerException {
+    ActionSla actionSla = null;
+    String query = "FROM ActionSla as a where a.actionId= '" + actionId + "'";
+    HQLServices hqlServices = new HQLServices(hibernateUtil);
+    List<ActionSla> acrionSlas = hqlServices.selectWhereCondition(query);
+    actionSla = acrionSlas.get(0);
+
+    return actionSla;
   }
 
 }

@@ -3,53 +3,62 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.wattics.vimsen.entities.MarketSignal" table="market_signal" lazy="false">
-        <id name="id" type="java.lang.Integer">
-            <column name="id" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="dsoTerritory" class="com.wattics.vimsen.entities.DsoTerritory" fetch="select">
-            <column name="DSO_territory_id" not-null="true" />
-        </many-to-one>
-        <property name="startTime" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
-            <column name="start_time" length="19">
-                <comment>reduction staritng time</comment>
-            </column>
-        </property>
-        <property name="endTime" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
-            <column name="end_time" length="19" />
-        </property>
-        <property name="amountReduction" type="string">
-            <column name="amount_reduction" length="65535" />
-        </property>
-        <property name="signalDate" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
-            <column name="signal_date" length="10">
-                <comment>time the signal is received</comment>
-            </column>
-        </property>
-        <property name="achieved" type="java.lang.Boolean">
-            <column name="achieved" />
-        </property>
-        <property name="timeInterval" type="java.lang.Integer">
-            <column name="time_interval" />
-        </property>
-        <property name="unit" type="string">
-            <column name="unit" length="50" />
-        </property>
-        <property name="startTimeText" type="string">
-            <column name="start_time_text" />
-        </property>
-        <set name="plans" table="plan" inverse="true" lazy="false" fetch="select">
-            <key>
-                <column name="market_signal_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.Plan" />
-        </set>
-        <set name="dssSelectedProsumers" table="dss_selected_prosumer" inverse="true" lazy="false" fetch="select">
-            <key>
-                <column name="market_signal_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.DssSelectedProsumer" />
-        </set>
-    </class>
+	<class name="com.wattics.vimsen.entities.MarketSignal" table="market_signal"
+		lazy="false">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<many-to-one name="dsoTerritory"
+			class="com.wattics.vimsen.entities.DsoTerritory" fetch="select">
+			<column name="DSO_territory_id" not-null="true" />
+		</many-to-one>
+		<property name="startTime"
+			type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+			<column name="start_time" length="19">
+				<comment>reduction staritng time</comment>
+			</column>
+		</property>
+		<property name="endTime"
+			type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+			<column name="end_time" length="19" />
+		</property>
+		<property name="amountReduction" type="string">
+			<column name="amount_reduction" length="65535" />
+		</property>
+		<property name="signalDate"
+			type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
+			<column name="signal_date" length="10">
+				<comment>time the signal is received</comment>
+			</column>
+		</property>
+		<property name="achieved" type="java.lang.Boolean">
+			<column name="achieved" />
+		</property>
+		<property name="timeInterval" type="java.lang.Integer">
+			<column name="time_interval" />
+		</property>
+		<property name="unit" type="string">
+			<column name="unit" length="50" />
+		</property>
+		<property name="startTimeText" type="string">
+			<column name="start_time_text" />
+		</property>
+		<property name="type" type="string">
+			<column name="type" />
+		</property>
+		<set name="plans" table="plan" inverse="true" lazy="false" fetch="select">
+			<key>
+				<column name="market_signal_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.Plan" />
+		</set>
+		<set name="dssSelectedProsumers" table="dss_selected_prosumer"
+			inverse="true" lazy="false" fetch="select">
+			<key>
+				<column name="market_signal_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.DssSelectedProsumer" />
+		</set>
+	</class>
 </hibernate-mapping>

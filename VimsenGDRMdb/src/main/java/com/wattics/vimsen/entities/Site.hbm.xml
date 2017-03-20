@@ -3,51 +3,57 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.wattics.vimsen.entities.Site" table="site" lazy="false">
-        <id name="id" type="int">
-            <column name="id" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="city" class="com.wattics.vimsen.entities.City" fetch="select">
-            <column name="city_id" not-null="true" />
-        </many-to-one>
-        <many-to-one name="transformer" class="com.wattics.vimsen.entities.Transformer" fetch="select">
-            <column name="transformer_id" not-null="true" />
-        </many-to-one>
-        <property name="name" type="string">
-            <column name="name" />
-        </property>
-        <property name="street" type="string">
-            <column name="street" />
-        </property>
-        <property name="streetNumber" type="string">
-            <column name="street_number" />
-        </property>
-        <set name="siteConditionProfiles" table="site_condition_profile" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="site_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.SiteConditionProfile" />
-        </set>
-        <one-to-one name="siteSla" class="com.wattics.vimsen.entities.SiteSla"></one-to-one>
-        <set name="prosumerHasSites" table="prosumer_has_site" inverse="true" lazy="false" fetch="select">
-            <key>
-                <column name="site_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.ProsumerHasSite" />
-        </set>
-        <one-to-one name="siteMetric" class="com.wattics.vimsen.entities.SiteMetric"></one-to-one>
-        <set name="siteConditionRaws" table="site_condition_raw" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="site_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.SiteConditionRaw" />
-        </set>
-        <set name="equipments" table="equipment" inverse="true" lazy="false" fetch="select">
-            <key>
-                <column name="site_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.Equipment" />
-        </set>
-    </class>
+	<class name="com.wattics.vimsen.entities.Site" table="site" lazy="false">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="city" class="com.wattics.vimsen.entities.City"
+			fetch="select">
+			<column name="city_id" not-null="true" />
+		</many-to-one>
+		<many-to-one name="transformer"
+			class="com.wattics.vimsen.entities.Transformer" fetch="select">
+			<column name="transformer_id" not-null="true" />
+		</many-to-one>
+		<property name="name" type="string">
+			<column name="name" />
+		</property>
+		<property name="street" type="string">
+			<column name="street" />
+		</property>
+		<property name="streetNumber" type="string">
+			<column name="street_number" />
+		</property>
+		<set name="siteConditionProfiles" table="site_condition_profile"
+			inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="site_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.SiteConditionProfile" />
+		</set>
+		<one-to-one name="siteSla" class="com.wattics.vimsen.entities.SiteSla"></one-to-one>
+		<set name="prosumerHasSites" table="prosumer_has_site" inverse="true"
+			lazy="false" fetch="select">
+			<key>
+				<column name="site_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.ProsumerHasSite" />
+		</set>
+		<one-to-one name="siteMetric" class="com.wattics.vimsen.entities.SiteMetric"></one-to-one>
+		<set name="siteConditionRaws" table="site_condition_raw" inverse="true"
+			lazy="true" fetch="select">
+			<key>
+				<column name="site_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.SiteConditionRaw" />
+		</set>
+		<set name="equipments" table="equipment" inverse="true" lazy="false"
+			fetch="select">
+			<key>
+				<column name="site_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.Equipment" />
+		</set>
+	</class>
 </hibernate-mapping>

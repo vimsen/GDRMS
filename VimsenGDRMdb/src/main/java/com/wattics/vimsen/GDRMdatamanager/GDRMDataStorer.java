@@ -78,4 +78,10 @@ public class GDRMDataStorer implements GDRMDataStorerInterface {
     planService.update(plan);
   }
 
+  @Override
+  public void storeDssSelectedProsumers(DssSelectedProsumer dssProsumer) throws DataAccessLayerException {
+    DssSelectedProsumerService dspService = new DssSelectedProsumerService(hibernateUtil);
+    dspService.update(dssProsumer);
+  }
+
 }

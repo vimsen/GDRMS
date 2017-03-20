@@ -14,13 +14,15 @@ import org.joda.time.format.ISODateTimeFormat;
 
 public class TimeHelpers {
 
-  public static int MS_IN_A_SEC = 1000;
-  public static int MS_IN_A_DAY = 24 * 60 * 60 * 1000;
-  public static int SEC_IN_A_MIN = 60;
-  public static int MIN_IN_A_HOUR = 60;
+  public static final int MS_IN_A_SEC = 1000;
+  public static final int MS_IN_A_DAY = 24 * 60 * 60 * 1000;
+  public static final int SEC_IN_A_MIN = 60;
+  public static final int MIN_IN_A_HOUR = 60;
+  public static final int SIX_MONTHS_IN_MS = 6 * 30 * MS_IN_A_DAY;
   public static final DateTimeFormatter timestampUtcFormatterISO8601 = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
   public static final DateTimeFormatter timestampUtcFormatterISO8601Colon = DateTimeFormat
       .forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZ");
+  public static final DateTimeFormatter timestampUtcFormatterISO8601OnlyDate = DateTimeFormat.forPattern("yyyy-MM-dd");
   public static final DateTimeFormatter timestampUtcFormatterISO8601NoMs = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZZ");
   public static final DateTimeFormatter timestampUtcFormatterISO8601WithMs = DateTimeFormat
       .forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZ");
@@ -87,6 +89,14 @@ public class TimeHelpers {
     return hourMinutes;
   }
 
+  public static int getLocalTimeHour(String referenceTime, DateTime dateTime) {
+    DateTime datetimeRef = TimeHelpers.timestampUtcFormatterISO8601.withOffsetParsed().parseDateTime(referenceTime);
+    Duration duration = new Duration(datetimeRef.getMillis(), dateTime.getMillis());
+    DateTime dateTimeAdjusted = datetimeRef.plus(duration);
+
+    return dateTimeAdjusted.getHourOfDay();
+  }
+
   public static String getLocalDate(String referenceTime, DateTime dateTime) {
     DateTime datetimeRef = TimeHelpers.timestampUtcFormatterISO8601.withOffsetParsed().parseDateTime(referenceTime);
     Duration duration = new Duration(datetimeRef.getMillis(), dateTime.getMillis());
@@ -96,6 +106,11 @@ public class TimeHelpers {
     String hourMinutes = dateTimeAdjusted.toString(formatter);
 
     return hourMinutes;
+  }
+
+  public static String convertDateTimeToDateString(DateTime originalDateTime) {
+    String dateString = timestampUtcFormatterISO8601OnlyDate.print(originalDateTime);
+    return dateString;
   }
 
   public static String convertDateTimeToString(DateTime originalDateTime) {

@@ -66,4 +66,10 @@ public class MockGDRMDataStorer implements GDRMDataStorerInterface {
 
   }
 
+  @Override
+  public void storeDssSelectedProsumers(DssSelectedProsumer dssProsumer) throws DataAccessLayerException {
+    // TODO Auto-generated method stub
+    
+  }
+
 }

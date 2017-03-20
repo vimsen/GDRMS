@@ -1,7 +1,5 @@
 package com.wattics.vimsen.GDRMdatamanager;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +9,6 @@ import com.wattics.vimsen.dbDAO.DataAccessLayerException;
 import com.wattics.vimsen.entities.Action;
 import com.wattics.vimsen.entities.DssSelectedProsumer;
 import com.wattics.vimsen.entities.Equipment;
-import com.wattics.vimsen.entities.Kwh15mn;
-import com.wattics.vimsen.entities.KwhForecast;
 import com.wattics.vimsen.entities.MarketSignal;
 import com.wattics.vimsen.entities.Plan;
 import com.wattics.vimsen.entities.Prosumer;
@@ -33,22 +29,22 @@ public class GDRMDataGetterNoHib {
     return new ArrayList<Action>(actions);
   }
 
-  public static List<Prosumer> getPrimaryProsumersFromMarketSignal(MarketSignal marketSignal) {
-    List<Prosumer> prosumers = new ArrayList<Prosumer>();
-    Set<DssSelectedProsumer> dssProsumersSet = marketSignal.getDssSelectedProsumers();
-    List<DssSelectedProsumer> dssProsumers = new ArrayList<DssSelectedProsumer>(dssProsumersSet);
-    for (DssSelectedProsumer dssProsumer : dssProsumers) {
-      if (dssProsumer.getIsPrimary()) {
-        prosumers.add(dssProsumer.getProsumer());
-      }
-    }
-    return prosumers;
-  }
+//  public static List<Prosumer> getPrimaryProsumersFromMarketSignal(MarketSignal marketSignal) {
+//    List<Prosumer> prosumers = new ArrayList<Prosumer>();
+//    Set<DssSelectedProsumer> dssProsumersSet = marketSignal.getDssSelectedProsumers();
+//    List<DssSelectedProsumer> dssProsumers = new ArrayList<DssSelectedProsumer>(dssProsumersSet);
+//    for (DssSelectedProsumer dssProsumer : dssProsumers) {
+//      if (dssProsumer.getIsPrimary()) {
+//        prosumers.add(dssProsumer.getProsumer());
+//      }
+//    }
+//    return prosumers;
+//  }
 
-  public static Equipment selectEquipmentByName(List<Equipment> equipmentList, String name) {
+  public static Equipment selectEquipmentByCategory(List<Equipment> equipmentList, String name) {
     Equipment equipmentSelected = null;
     for (Equipment equipment : equipmentList) {
-      if (equipment.getName().equals(name)) {
+      if (equipment.getCategory().equals(name)) {
         equipmentSelected = equipment;
       }
     }
@@ -75,6 +71,15 @@ public class GDRMDataGetterNoHib {
       plansId.add(planId);
     }
     return plansId;
+  }
+
+  public static List<Plan> getPlanInCreatedAndOngoingStatus(GDRMDataGetterInterface dataGetter) throws DataAccessLayerException {
+    List<Plan> plans = new ArrayList<>();
+    List<Plan> plansCreated = dataGetter.getPlansWithStatus(PlanStatusEnum.CREATED.toString());
+    plans.addAll(plansCreated);
+    List<Plan> plansOngoing = dataGetter.getPlansWithStatus(PlanStatusEnum.ONGOING.toString());
+    plans.addAll(plansOngoing);
+    return plans;
   }
 
 }

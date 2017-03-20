@@ -54,30 +54,19 @@
 						</execution>
 					</executions>
 				</plugin>
-				<plugin>
-					<groupId>org.liquibase</groupId>
-					<artifactId>liquibase-maven-plugin</artifactId>
-					<version>3.4.1</version>
-					<configuration>
-						<propertyfile>src/main/resources/liquibase.properties</propertyfile>
-						<changeLogFile>src/main/resources/db/changelog-master.xml</changeLogFile>
-						<driver>com.mysql.jdbc.Driver</driver>
-						<url>jdbc:mysql://173.194.254.91/vimsen_db</url>
-						<username>root</username>
-						<password>c4ff3b1r0</password>
-						<!-- <referenceUrl>hibernate:classic:hibernate.cfg.xml</referenceUrl> -->
-					</configuration>
-					<executions>
-						<execution>
-							<phase>process-resources</phase>
-							<goals>
-								<goal>update</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
 			</plugins>
 		</pluginManagement>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 	</build>
 
 	<dependencies>

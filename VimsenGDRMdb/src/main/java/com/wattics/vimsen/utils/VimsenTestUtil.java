@@ -44,7 +44,8 @@ public class VimsenTestUtil {
     for (int prosumerId : primaryProsumers) {
       Prosumer prosumer = new Prosumer(prosumerId);
       DssSelectedProsumerId dssProsumerId = new DssSelectedProsumerId(prosumerId, marketSignal.getId());
-      DssSelectedProsumer dssProsumer = new DssSelectedProsumer(dssProsumerId, marketSignal, prosumer, true);
+      DssSelectedProsumer dssProsumer = new DssSelectedProsumer(dssProsumerId, marketSignal, prosumer, true, false, false, false,
+          false, false);
       dssProsumers.add(dssProsumer);
     }
     for (int prosumerId : secondaryProsumers) {

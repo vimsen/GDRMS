@@ -30,7 +30,7 @@ public class GDRMSiteGetterTest {
   public void getKwh15mnExistInDb() throws DataAccessLayerException {
     GDRMDataGetter siteGetter = new GDRMDataGetter(hibernateUtil);
     Site site = siteGetter.getSite(DatabaseSetUp.DEFAULT_SITE_ID);
-    Equipment equipment = siteGetter.getEquipment(DatabaseSetUp.DEFAULT_EQUIPMENT_ID, DatabaseSetUp.DEFAULT_EQUIPMENT_NAME, site);
+    Equipment equipment = siteGetter.getEquipment(DatabaseSetUp.DEFAULT_EQUIPMENT_ID, DatabaseSetUp.DEFAULT_EQUIPMENT_CATEGORY, site);
     DateTime date = new DateTime(2015, 10, 21, 0, 0, 0);
     DatabaseSetUp.storeKwh15mn(hibernateUtil, equipment, date);
 

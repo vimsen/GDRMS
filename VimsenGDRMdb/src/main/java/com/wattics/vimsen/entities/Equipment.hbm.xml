@@ -3,86 +3,105 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.wattics.vimsen.entities.Equipment" table="equipment" lazy="false">
-        <id name="id" type="int">
-            <column name="id" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="site" class="com.wattics.vimsen.entities.Site" fetch="select">
-            <column name="site_id" not-null="true" />
-        </many-to-one>
-        <property name="name" type="string">
-            <column name="name" />
-        </property>
-        <property name="class_" type="string">
-            <column name="class">
-                <comment>Equipment class can be: Self' generation Storage Reschedule Curtailment Reduction None</comment>
-            </column>
-        </property>
-        <property name="category" type="string">
-            <column name="category" length="65535">
-                <comment>Example: Lighting Air conditioning Air handling unit Refrigeration Laundry machine Kitchen appliance Production unit Storage unit</comment>
-            </column>
-        </property>
-        <property name="brand" type="string">
-            <column name="brand" />
-        </property>
-        <property name="model" type="string">
-            <column name="model" />
-        </property>
-        <set name="kwhForecasts" table="kWh_forecast" inverse="true" lazy="false" fetch="select">
-            <key>
-                <column name="equipment_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.KwhForecast" />
-        </set>
-        <one-to-one name="equipmentConditionProfile" class="com.wattics.vimsen.entities.EquipmentConditionProfile"></one-to-one>
-        <one-to-one name="reschedulableFootprint" class="com.wattics.vimsen.entities.ReschedulableFootprint"></one-to-one>
-        <set name="equipmentConditionRaws" table="equipment_condition_raw" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="equipment_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.EquipmentConditionRaw" />
-        </set>
-        <one-to-one name="reducibleFootprint" class="com.wattics.vimsen.entities.ReducibleFootprint"></one-to-one>
-        <one-to-one name="generatorFootprint" class="com.wattics.vimsen.entities.GeneratorFootprint"></one-to-one>
-        <set name="kwhBoundarieses" table="kWh_boundaries" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="equipment_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.KwhBoundaries" />
-        </set>
-        <one-to-one name="storableFootprint" class="com.wattics.vimsen.entities.StorableFootprint"></one-to-one>
-        <set name="kwh5mns" table="kWh_5mn" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="equipment_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.Kwh5mn" />
-        </set>
-        <set name="operatingStates" table="operating_state" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="equipment_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.OperatingState" />
-        </set>
-        <set name="actions" table="action" inverse="true" lazy="false" fetch="select">
-            <key>
-                <column name="equipment_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.Action" />
-        </set>
-        <set name="kwhHourlies" table="kWh_hourly" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="equipment_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.KwhHourly" />
-        </set>
-        <one-to-one name="electricityRaw" class="com.wattics.vimsen.entities.ElectricityRaw"></one-to-one>
-        <set name="kwh15mns" table="kWh_15mn" inverse="true" lazy="false" fetch="select">
-            <key>
-                <column name="equipment_id" not-null="true" />
-            </key>
-            <one-to-many class="com.wattics.vimsen.entities.Kwh15mn" />
-        </set>
-    </class>
+	<class name="com.wattics.vimsen.entities.Equipment" table="equipment"
+		lazy="false">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="site" class="com.wattics.vimsen.entities.Site"
+			fetch="select">
+			<column name="site_id" not-null="true" />
+		</many-to-one>
+		<property name="name" type="string">
+			<column name="name" />
+		</property>
+		<property name="class_" type="string">
+			<column name="class">
+				<comment>Equipment class can be: Self' generation Storage Reschedule
+					Curtailment Reduction None</comment>
+			</column>
+		</property>
+		<property name="category" type="string">
+			<column name="category" length="65535">
+				<comment>Example: Lighting Air conditioning Air handling unit
+					Refrigeration Laundry machine Kitchen appliance Production unit
+					Storage unit</comment>
+			</column>
+		</property>
+		<property name="brand" type="string">
+			<column name="brand" />
+		</property>
+		<property name="model" type="string">
+			<column name="model" />
+		</property>
+		<set name="kwhForecasts" table="kWh_forecast" inverse="true" lazy="false"
+			fetch="select">
+			<key>
+				<column name="equipment_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.KwhForecast" />
+		</set>
+		<one-to-one name="equipmentConditionProfile"
+			class="com.wattics.vimsen.entities.EquipmentConditionProfile"></one-to-one>
+		<one-to-one name="reschedulableFootprint"
+			class="com.wattics.vimsen.entities.ReschedulableFootprint"></one-to-one>
+		<set name="equipmentConditionRaws" table="equipment_condition_raw"
+			inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="equipment_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.EquipmentConditionRaw" />
+		</set>
+		<one-to-one name="reducibleFootprint"
+			class="com.wattics.vimsen.entities.ReducibleFootprint"></one-to-one>
+		<one-to-one name="generatorFootprint"
+			class="com.wattics.vimsen.entities.GeneratorFootprint"></one-to-one>
+		<set name="kwhBoundarieses" table="kWh_boundaries" inverse="true"
+			lazy="true" fetch="select">
+			<key>
+				<column name="equipment_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.KwhBoundaries" />
+		</set>
+		<one-to-one name="storableFootprint"
+			class="com.wattics.vimsen.entities.StorableFootprint"></one-to-one>
+		<set name="kwh5mns" table="kWh_5mn" inverse="true" lazy="true"
+			fetch="select">
+			<key>
+				<column name="equipment_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.Kwh5mn" />
+		</set>
+		<set name="operatingStates" table="operating_state" inverse="true"
+			lazy="true" fetch="select">
+			<key>
+				<column name="equipment_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.OperatingState" />
+		</set>
+		<set name="actions" table="action" inverse="true" lazy="false"
+			fetch="select">
+			<key>
+				<column name="equipment_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.Action" />
+		</set>
+		<set name="kwhHourlies" table="kWh_hourly" inverse="true" lazy="true"
+			fetch="select">
+			<key>
+				<column name="equipment_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.KwhHourly" />
+		</set>
+		<one-to-one name="electricityRaw"
+			class="com.wattics.vimsen.entities.ElectricityRaw"></one-to-one>
+		<set name="kwh15mns" table="kWh_15mn" inverse="true" lazy="false"
+			fetch="select">
+			<key>
+				<column name="equipment_id" not-null="true" />
+			</key>
+			<one-to-many class="com.wattics.vimsen.entities.Kwh15mn" />
+		</set>
+	</class>
 </hibernate-mapping>

@@ -53,8 +53,8 @@ public class DatabaseSetUpTest {
     DateTime startTime = TimeHelpers.createDateTimePreservingTimeZone(startTimeText);
 
     Double[] reduction = new Double[] { 10.0, 2.0 };
-    List<Integer> primaryProsumers = VimsenTestUtil.asList(1, 2);
-    List<Integer> secondaryProsumers = VimsenTestUtil.asList(3, 4);
+    List<String> primaryProsumers = VimsenTestUtil.asList("Pr_1", "Pr_2");
+    List<String> secondaryProsumers = VimsenTestUtil.asList("Pr_3", "Pr_4");
 
     MarketSignal marketSignal = DatabaseSetUp.storeMarketSignal(hibernateUtil, startTimeText, startTime, reduction,
         primaryProsumers, secondaryProsumers);
@@ -67,8 +67,8 @@ public class DatabaseSetUpTest {
 
   @AfterMethod
   public void cleanDBAndCloseHibernate() throws DataAccessLayerException {
-    DatabaseSetUp.cleanDb(hibernateUtil);
-    hibernateUtil.closeSessionFactory();
-    hibernateUtil.setSessionFactoryToNull();
+    // DatabaseSetUp.cleanDb(hibernateUtil);
+    // hibernateUtil.closeSessionFactory();
+    // hibernateUtil.setSessionFactoryToNull();
   }
 }

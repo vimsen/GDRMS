@@ -1,5 +1,7 @@
 package com.wattics.vimsen.entities;
 
+import javax.validation.constraints.NotNull;
+
 // Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1
 
 import org.joda.time.DateTime;
@@ -9,6 +11,7 @@ import org.joda.time.DateTime;
  */
 public class ActionSla implements java.io.Serializable {
 
+  @NotNull
   private int actionId;
   private Action action;
   private Boolean mandatory;
@@ -19,8 +22,11 @@ public class ActionSla implements java.io.Serializable {
   private Boolean automated;
   private Boolean manual;
   private DateTime deadline;
+  @NotNull
   private Double consumptionTarget;
+  @NotNull
   private DateTime startResponsePeriod;
+  @NotNull
   private DateTime endResponsePeriod;
   private Double maximumDuration;
   private Double slaCapacity;
@@ -37,8 +43,8 @@ public class ActionSla implements java.io.Serializable {
 
   public ActionSla(Action action, Boolean mandatory, Boolean dayAheadNotice, Boolean intraDayNotice, Double timeIntraDay,
       Boolean runtimeNotice, Boolean automated, Boolean manual, DateTime deadline, Double consumptionTarget,
-      DateTime startResponsePeriod, DateTime endResponsePeriod, Double maximumDuration, Double slaCapacity,
-      Integer maxNumberCall, Integer maxNumberCallDaily, Boolean actionRegistration) {
+      DateTime startResponsePeriod, DateTime endResponsePeriod, Double maximumDuration, Double slaCapacity, Integer maxNumberCall,
+      Integer maxNumberCallDaily, Boolean actionRegistration) {
     this.action = action;
     this.mandatory = mandatory;
     this.dayAheadNotice = dayAheadNotice;

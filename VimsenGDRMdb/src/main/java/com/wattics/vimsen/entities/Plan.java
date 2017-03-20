@@ -4,6 +4,10 @@ package com.wattics.vimsen.entities;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.joda.time.DateTime;
 
 /**
@@ -16,6 +20,7 @@ public class Plan implements java.io.Serializable {
   private String name;
   private DateTime date;
   private String type;
+  @NotNull
   private String status;
   private Set planWeights = new HashSet(0);
   private Set planHasActions = new HashSet(0);

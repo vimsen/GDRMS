@@ -1,5 +1,7 @@
 package com.wattics.vimsen.entities;
 
+import javax.validation.constraints.NotNull;
+
 // Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1
 
 import org.joda.time.DateTime;
@@ -12,13 +14,19 @@ public class PlanHasAction implements java.io.Serializable {
   private PlanHasActionId id;
   private Plan plan;
   private Action action;
+  @NotNull
   private DateTime TStart;
   private DateTime TEnd;
+  @NotNull
   private String plannedAmount;
   private Boolean implemented;
   private String signalValue;
   private String actualAmount;
   private DateTime updatedActualAt;
+  @NotNull
+  private Integer amountRecProgressToSend;
+  @NotNull
+  private Integer amountRecProgressSent;
 
   public PlanHasAction() {
   }
@@ -30,7 +38,8 @@ public class PlanHasAction implements java.io.Serializable {
   }
 
   public PlanHasAction(PlanHasActionId id, Plan plan, Action action, DateTime TStart, DateTime TEnd, String plannedAmount,
-      Boolean implemented, String signalValue, String actualAmount, DateTime updatedActualAt) {
+      Boolean implemented, String signalValue, String actualAmount, DateTime updatedActualAt, Integer amountRecProgressToSend,
+      Integer amountRecProgressSent) {
     this.id = id;
     this.plan = plan;
     this.action = action;
@@ -41,6 +50,8 @@ public class PlanHasAction implements java.io.Serializable {
     this.signalValue = signalValue;
     this.actualAmount = actualAmount;
     this.updatedActualAt = updatedActualAt;
+    this.setAmountRecProgressToSend(amountRecProgressToSend);
+    this.setAmountRecProgressSent(amountRecProgressSent);
   }
 
   public PlanHasActionId getId() {
@@ -121,6 +132,22 @@ public class PlanHasAction implements java.io.Serializable {
 
   public void setUpdatedActualAt(DateTime updatedActualAt) {
     this.updatedActualAt = updatedActualAt;
+  }
+
+  public Integer getAmountRecProgressToSend() {
+    return amountRecProgressToSend;
+  }
+
+  public void setAmountRecProgressToSend(Integer amountRecProgressToSend) {
+    this.amountRecProgressToSend = amountRecProgressToSend;
+  }
+
+  public Integer getAmountRecProgressSent() {
+    return amountRecProgressSent;
+  }
+
+  public void setAmountRecProgressSent(Integer amountRecProgressSent) {
+    this.amountRecProgressSent = amountRecProgressSent;
   }
 
 }
