@@ -24,7 +24,7 @@
 			<column name="end_time" length="19" />
 		</property>
 		<property name="amountReduction" type="string">
-			<column name="amount_reduction" length="65535" />
+			<column name="amount_reduction" length="6553" />
 		</property>
 		<property name="signalDate"
 			type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">

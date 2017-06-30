@@ -30,7 +30,7 @@
 			<column name="t_end" length="19" />
 		</property>
 		<property name="plannedAmount" type="string">
-			<column name="planned_amount" length="65535" />
+			<column name="planned_amount" length="6553" />
 		</property>
 		<property name="implemented" type="java.lang.Boolean">
 			<column name="implemented" />
@@ -39,7 +39,7 @@
 			<column name="signal_value" length="45" />
 		</property>
 		<property name="actualAmount" type="string">
-			<column name="actual_amount" length="65535" />
+			<column name="actual_amount" length="6553" />
 		</property>
 		<property name="updatedActualAt"
 			type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">

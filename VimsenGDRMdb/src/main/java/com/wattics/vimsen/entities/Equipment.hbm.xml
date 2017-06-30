@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
 	<class name="com.wattics.vimsen.entities.Equipment" table="equipment"
@@ -18,12 +18,12 @@
 		</property>
 		<property name="class_" type="string">
 			<column name="class">
-				<comment>Equipment class can be: Self' generation Storage Reschedule
+				<comment>Equipment class can be: Self generation Storage Reschedule
 					Curtailment Reduction None</comment>
 			</column>
 		</property>
 		<property name="category" type="string">
-			<column name="category" length="65535">
+			<column name="category" length="6553">
 				<comment>Example: Lighting Air conditioning Air handling unit
 					Refrigeration Laundry machine Kitchen appliance Production unit
 					Storage unit</comment>

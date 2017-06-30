@@ -25,7 +25,7 @@ public class GDRMDataGetterTest {
 
   // private String configurationFile = "hibernate.cfg.xml";
   private String testConfigurationFile = "schemaTestConfig.cfg.xml";
-  private HibernateUtil hibernateUtil = new HibernateUtil(testConfigurationFile);
+  private HibernateUtil hibernateUtil;
 
   private final String marketSignalDate = "2015-11-19T13:00:00.000+02:00";
 
@@ -33,8 +33,8 @@ public class GDRMDataGetterTest {
     String startTimeText = marketSignalDate;
     DateTime dateTimeStart = new DateTime(startTimeText);
     Double[] reduction = new Double[] { 1.0, 2.0 };
-    List<String> primaryProsumers = VimsenTestUtil.asList("Pr_1", "Pr_2");
-    List<String> secondaryProsumers = VimsenTestUtil.asList("Pr_3", "Pr_4");
+    List<String> primaryProsumers = VimsenTestUtil.asList("Pr_0", "Pr_1");
+    List<String> secondaryProsumers = VimsenTestUtil.asList("Pr_2", "Pr_3");
     MarketSignal marketSignal = DatabaseSetUp.storeMarketSignal(hibernateUtil, startTimeText, dateTimeStart, reduction,
         primaryProsumers, secondaryProsumers);
     Plan plan = DatabaseSetUp.storePlan(hibernateUtil, marketSignal);
@@ -46,8 +46,8 @@ public class GDRMDataGetterTest {
     String startTimeText = marketSignalDate;
     DateTime dateTimeStart = new DateTime(startTimeText);
     Double[] reduction = new Double[] { 1.0, 2.0 };
-    List<String> primaryProsumers = VimsenTestUtil.asList("Pr_1", "Pr_2");
-    List<String> secondaryProsumers = VimsenTestUtil.asList("Pr_3", "Pr_4");
+    List<String> primaryProsumers = VimsenTestUtil.asList("Pr_0", "Pr_1");
+    List<String> secondaryProsumers = VimsenTestUtil.asList("Pr_2", "Pr_3");
     MarketSignal marketSignal = DatabaseSetUp.storeMarketSignal(hibernateUtil, startTimeText, dateTimeStart, reduction,
         primaryProsumers, secondaryProsumers);
     return marketSignal.getId();
@@ -56,6 +56,7 @@ public class GDRMDataGetterTest {
   @BeforeMethod
   public void createHibernateSessionFactory() throws DataAccessLayerException {
     int numberProsumers = 4;
+    hibernateUtil = new HibernateUtil(testConfigurationFile);
     DatabaseSetUp.cleanDb(hibernateUtil);
     DatabaseSetUp.populateDb(hibernateUtil, numberProsumers);
   }

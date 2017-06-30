@@ -16,7 +16,7 @@
             <column name="action_id" not-null="true" />
         </many-to-one>
         <property name="reductionCapacity" type="string">
-            <column name="reduction_capacity" length="65535" />
+            <column name="reduction_capacity" length="6553" />
         </property>
         <property name="endTime" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime">
             <column name="end_time" length="19" />

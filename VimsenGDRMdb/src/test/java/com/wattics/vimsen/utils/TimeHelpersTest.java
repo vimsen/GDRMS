@@ -1,6 +1,7 @@
 package com.wattics.vimsen.utils;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.Instant;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -40,8 +41,8 @@ public class TimeHelpersTest {
 
   @Test
   public void getValuesDuringSelectedPeriodTest() {
-    DateTime startTime = new DateTime("2015-11-19T13:00:00.000+00:00");
-    DateTime endTime = new DateTime("2015-11-19T15:00:00.000+00:00");
+    DateTime startTime = new DateTime("2015-11-19T13:00:00.000+00:00").withZone(DateTimeZone.UTC);
+    DateTime endTime = new DateTime("2015-11-19T15:00:00.000+00:00").withZone(DateTimeZone.UTC);
     Double[] values = new Double[96];
     values[13 * 4] = 13.0;
 
@@ -145,7 +146,7 @@ public class TimeHelpersTest {
   public void convertDateTimeToStringTest() {
     String time = "2016-01-22T20:30:00.000+02:00";
     String expectedDate = "2016-01-22T18:30:00.000+00:00";
-    DateTime originalDateTime = new DateTime(time);
+    DateTime originalDateTime = new DateTime(time).withZone(DateTimeZone.UTC);
 
     String actualDate = TimeHelpers.convertDateTimeToString(originalDateTime);
 
@@ -177,8 +178,8 @@ public class TimeHelpersTest {
 
   @Test
   public void convertDateTimeToLocalHourNegativeDurationDifference() {
-    String time = "2016-01-10T20:30:00+00:00";
-    String timeToConv = "2016-01-10T21:30:00+01:00";
+    String time = "2016-01-10T20:30:00.000+00:00";
+    String timeToConv = "2016-01-10T21:30:00.000+01:00";
     DateTime dateTimeToConvert = new DateTime(timeToConv);
 
     int actualHour = TimeHelpers.getLocalTimeHour(time, dateTimeToConvert);

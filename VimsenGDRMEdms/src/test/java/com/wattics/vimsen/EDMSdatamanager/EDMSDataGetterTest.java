@@ -34,12 +34,12 @@ public class EDMSDataGetterTest {
 
     for (Entry<DateTime, Double> consumptionEntry : consumption.entrySet()) {
       Assert.assertEquals(consumptionEntry.getKey(), expectedDate);
-      Assert.assertEquals(consumptionEntry.getValue(), expectedProduction);
+      Assert.assertEquals(consumptionEntry.getValue(), expectedProduction, 0.0001d);
     }
 
   }
 
-  @Test(expectedExceptions = EDMSDataGetterException.class)
+  @Test(expectedExceptions = IndexOutOfBoundsException.class)
   public void getProsumersForecastConsumptionMeasurmentsVGWNoDataInResponse() throws EDMSDataGetterException {
     String url = "https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/getdataVGW?";
     String prosumerUrl = "prosumers=HP_0001";

@@ -1,4 +1,4 @@
-package com.wattics.vimsen.entities;
+    package com.wattics.vimsen.entities;
 
 // Generated 19-gen-2016 16.17.04 by Hibernate Tools 3.4.0.CR1
 

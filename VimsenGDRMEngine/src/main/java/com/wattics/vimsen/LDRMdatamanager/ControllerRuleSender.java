@@ -48,6 +48,10 @@ public class ControllerRuleSender implements ControllerRuleSenderInterface {
     return response;
   }
 
+  public String sendNewConsumptionRule(String header, String ruleJson) throws LDRMRuleException {
+    return sendNewConsumptionRule(ruleJson);
+  }
+  
   private static String postRule(String ruleJson)
       throws ClientProtocolException, IOException, NoSuchAlgorithmException, KeyManagementException {
 

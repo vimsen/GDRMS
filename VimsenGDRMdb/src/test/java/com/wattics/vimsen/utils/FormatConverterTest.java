@@ -14,7 +14,7 @@ public class FormatConverterTest {
 
   @Test(expectedExceptions = MapperException.class)
   public void throwsExceptionForNaNValues() throws MapperException {
-    String s = "[NaN,NaN]";
+    String s = "[NaN2,NaN3]";
     FormatConverter.stringToArraydouble(s);
   }
 

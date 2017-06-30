@@ -24,10 +24,10 @@
             </column>
         </property>
         <property name="rangeSignal" type="string">
-            <column name="range_signal" length="65535" />
+            <column name="range_signal" length="6553" />
         </property>
         <property name="description" type="string">
-            <column name="description" length="65535" />
+            <column name="description" length="6553" />
         </property>
         <property name="ruleControllerId" type="string">
             <column name="rule_controller_id" />

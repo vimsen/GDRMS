@@ -45,7 +45,7 @@ public class DatabaseSetUpTest {
 
   @Test
   public void addMarketSignal() throws DataAccessLayerException {
-    int numberProsumers = 4;
+    int numberProsumers = 5;
     DatabaseSetUp.cleanDb(hibernateUtil);
     DatabaseSetUp.populateDb(hibernateUtil, numberProsumers);
 

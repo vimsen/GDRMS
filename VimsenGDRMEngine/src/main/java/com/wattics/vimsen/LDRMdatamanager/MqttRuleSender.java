@@ -32,6 +32,10 @@ public class MqttRuleSender implements ControllerRuleSenderInterface {
     return ruleJson;
   }
 
-
+  @Override
+  public String sendNewConsumptionRule(String ruleJson) throws LDRMRuleException {
+    mqttSender.checkConnectionAndPublishMessage("", ruleJson);
+    return ruleJson;
+  }
 
 }

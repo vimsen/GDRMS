@@ -16,9 +16,9 @@ public class EDMSManagerTest {
     Prosumer prosumer = new Prosumer(1);
     prosumer.setName("b827eb4c14af");
     String equipmentName = DatabaseSetUp.DEFAULT_EQUIPMENT_CATEGORY;
-    Instant startTime = new Instant("2016-04-06T08:29:00+02:00");
-    Instant endTime = new Instant("2016-04-06T10:27:00+02:00");
-    int intervalDurationSec = 300;
+    Instant startTime = new Instant("2017-04-06T08:29:00+02:00");
+    Instant endTime = new Instant("2017-04-06T10:27:00+02:00");
+    int intervalDurationSec = 900;
     EDMSDataGetterInterface dataGetter = new EDMSDataGetter();
 
     Map<Long, Double> consumption = EDMSManager.getKwhForecastConsumptionVGWMap(prosumer, equipmentName, startTime, endTime,
@@ -26,12 +26,12 @@ public class EDMSManagerTest {
 
     Assert.assertEquals(consumption.size(), 8);
 
-    Instant initialInstant = new Instant("2016-04-06T08:30:00+02:00");
+    Instant initialInstant = new Instant("2017-04-06T08:30:00+02:00");
 
     Long time = initialInstant.getMillis();
 
     Double value = consumption.get(time);
-    Assert.assertEquals(value, 9.52);
+    Assert.assertEquals(value, 9.76);
   }
 
   @Test
@@ -39,8 +39,8 @@ public class EDMSManagerTest {
     Prosumer prosumer = new Prosumer(1);
     prosumer.setName("b827eb4c14af");
     String equipmentName = DatabaseSetUp.DEFAULT_EQUIPMENT_CATEGORY;
-    Instant startTime = new Instant("2016-04-05T08:27:00+02:00");
-    Instant endTime = new Instant("2016-04-05T10:27:00+02:00");
+    Instant startTime = new Instant("2017-04-03T08:27:00+02:00");
+    Instant endTime = new Instant("2017-04-03T10:27:00+02:00");
     int intervalDurationSec = 900;
     EDMSDataGetterInterface dataGetter = new EDMSDataGetter();
 
@@ -49,12 +49,12 @@ public class EDMSManagerTest {
 
     Assert.assertEquals(consumption.size(), 8);
 
-    Instant initialInstant = new Instant("2016-04-05T09:30:00+02:00");
+    Instant initialInstant = new Instant("2017-04-03T09:30:00+02:00");
 
     Long time = initialInstant.getMillis();
 
     Double value = consumption.get(time);
-    Assert.assertEquals(value, -0.26);
+    Assert.assertEquals(value, 0.26, 0.01D);
   }
 
 }

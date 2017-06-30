@@ -21,6 +21,7 @@ lcov.info
 *.gz
 *.*.swp
 *.*~
+nb-configuration.xml
 
 # ignore conf files
 hibernate.cfg.xml

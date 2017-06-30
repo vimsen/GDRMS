@@ -116,7 +116,8 @@ public class DatabaseSetupHelperLauncher {
   public void testHqlManyToMany() throws DataAccessLayerException {
     // not working at the moment
     HQLServices hqlServices = new HQLServices(hibernateUtil);
-    String query = "from Prosumer where prosumerHasSites.id=1";
+    // String query = "from Prosumer where prosumerHasSites.id=1";
+    String query = "from ProsumerHasSite phs join phs.prosumer WHERE phs.site=1";
     // String query = "FROM Prosumer as p where p.id in (SELECT
     // ProsumerHasSite.prosumerId FROM ProsumerHasSite where siteId=1)";
     List<ProsumerHasSite> prosumers = hqlServices.selectWhereCondition(query);
