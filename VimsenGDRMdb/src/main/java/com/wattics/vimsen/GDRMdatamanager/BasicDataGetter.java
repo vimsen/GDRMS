@@ -162,7 +162,7 @@ public class BasicDataGetter {
   public List<Prosumer> getPrimaryProsumersFromMarketSignal(MarketSignal marketSignal) throws DataAccessLayerException {
     int marketSignalId = marketSignal.getId();
     String query = "select p from Prosumer p where p.id in (select dsp.id.prosumerId from DssSelectedProsumer dsp where dsp.id.marketSignalId = "
-        + marketSignalId + " and dsp.isPrimary = 1)))";
+        + marketSignalId + " and dsp.isPrimary = 1)";
     HQLServices hqlServices = new HQLServices(hibernateUtil);
     List<Prosumer> prosumers = hqlServices.selectWhereCondition(query);
     return prosumers;
