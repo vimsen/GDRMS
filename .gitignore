@@ -22,11 +22,13 @@ lcov.info
 *.*.swp
 *.*~
 nb-configuration.xml
+mqtt_config
 
 # ignore conf files
 hibernate.cfg.xml
 localhostTestConfig.cfg.xml
 schemaTestConfig.cfg.xml
+localhostJavaTest.cfg.xml
 
 # Java compiled classes
 *.class

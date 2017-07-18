@@ -26,9 +26,9 @@ import com.wattics.vimsen.utils.MapperException;
 public class DSSRequest extends HttpServlet {
   private static Logger logger = LoggerFactory.getLogger(DSSRequest.class);
   private static final long serialVersionUID = 1L;
-   String localhostConftestFile = "localhostTestConfig.cfg.xml";
+  // String localhostConftestFile = "localhostTestConfig.cfg.xml";
   // String testConfigurationFile = "schemaTestConfig.cfg.xml";
-//  private String configurationFile = "hibernate.cfg.xml";
+  private String configurationFile = "hibernate.cfg.xml";
   private HibernateUtil hibernateUtil;
   private DSSManager dssRequestManager;
 
@@ -37,7 +37,7 @@ public class DSSRequest extends HttpServlet {
    */
   public DSSRequest() {
     super();
-    hibernateUtil = new HibernateUtil(localhostConftestFile);
+    hibernateUtil = new HibernateUtil(configurationFile);
     this.dssRequestManager = new DSSManager(hibernateUtil);
   }
 
