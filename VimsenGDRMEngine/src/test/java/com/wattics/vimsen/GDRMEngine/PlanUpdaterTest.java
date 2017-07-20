@@ -51,7 +51,7 @@ public class PlanUpdaterTest {
     Assert.assertEquals(plan.getStatus(), PlanStatusEnum.REGISTERED.toString());
   }
 
-  @Test
+  @Test(enabled  =false)
   public void planCreatedIsUpdatedToOngoingTest() throws DataAccessLayerException, EDMSDataGetterException, MapperException {
 
     EDMSDataGetterInterface edmsDataGetter = new EDMSMockDataGetter();
@@ -77,7 +77,7 @@ public class PlanUpdaterTest {
     Assert.assertEquals(plan.getStatus(), PlanStatusEnum.ONGOING.toString());
   }
 
-  @Test
+  @Test(enabled  =false)
   public void planCreatedIsUpdatedToCompletedTest() throws DataAccessLayerException, EDMSDataGetterException, MapperException {
 
     EDMSDataGetterInterface edmsDataGetter = new EDMSMockDataGetter();

@@ -59,7 +59,7 @@ public class MqttControllerRuleMapperTest {
 
   }
 
-  @Test
+  @Test(enabled = false)
   public void generateMqttTopicForAControlAction() throws DataAccessLayerException, MapperException, NoValidDataException {
     DatabaseSetUp.populateDb(hibernateUtil, numberProsumers);
     GDRMDataGetterInterface dataGetter = new GDRMDataGetter(hibernateUtil);
@@ -80,7 +80,7 @@ public class MqttControllerRuleMapperTest {
     Assert.assertEquals(controlActions.getLeft(), expectedTopic);
   }
 
-  @Test
+  @Test(enabled = false)
   public void generateMqttMessageForAControlAction() throws DataAccessLayerException, MapperException, NoValidDataException {
     DatabaseSetUp.populateDb(hibernateUtil, numberProsumers);
     GDRMDataGetterInterface dataGetter = new GDRMDataGetter(hibernateUtil);

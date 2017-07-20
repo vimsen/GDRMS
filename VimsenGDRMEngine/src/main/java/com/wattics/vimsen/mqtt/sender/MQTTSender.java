@@ -42,14 +42,8 @@ public class MQTTSender {
 
   private void initializeMqttClient() throws MqttException {
     try {
-      ClassLoader classLoader = getClass().getClassLoader();
-      File file = new File(classLoader.getResource("mqtt_config").getFile());
-
-      // create application properties with default
       Properties mqttProps = new Properties();
-      InputStream fis = new FileInputStream(file);
-      mqttProps.load(fis);
-      fis.close();
+      mqttProps.load(MQTTSender.class.getResourceAsStream("/mqtt_config.properties"));
       BROKER_URL = mqttProps.getProperty("url");
       BROKER_USER = mqttProps.getProperty("user");
       BROKER_PASS = mqttProps.getProperty("password").toCharArray();

@@ -96,7 +96,7 @@ public class DRReductionCalculatorTest {
     return actionSla;
   }
 
-  @Test
+  @Test(enabled = false)
   public void selectedActionsAchieveRequestedReduction() throws MapperException, DataAccessLayerException {
     Double[] targetReductions = new Double[] { 2.0, 5.0 };
     int planId = 1;
@@ -131,7 +131,7 @@ public class DRReductionCalculatorTest {
     }
   }
 
-  @Test
+  @Test(enabled = false)
   public void availableActionsDontAchieveRequestedReduction() throws MapperException, DataAccessLayerException {
     Double[] targetReductions = new Double[] { 10.0, 15.0 };
     int planId = 1;
@@ -162,7 +162,7 @@ public class DRReductionCalculatorTest {
     Assert.assertEquals(plannedReduction[1], 2.0);
   }
 
-  @Test
+  @Test(enabled = false)
   public void selectedTwoActionsFirstSlotOneSecondSlot() throws MapperException, DataAccessLayerException {
     Double[] targetReductions = new Double[] { 10.0, 15.0 };
     int planId = 1;
@@ -199,7 +199,7 @@ public class DRReductionCalculatorTest {
     Assert.assertEquals(plannedReduction[1], 15.0);
   }
 
-  @Test
+  @Test(enabled = false)
   public void selectedCombinationOfActions() throws DataAccessLayerException {
     Double target = 10.0;
     int slotSizeSec = 900;
@@ -222,7 +222,7 @@ public class DRReductionCalculatorTest {
     Assert.assertEquals(selectedActions.size(), 2);
   }
 
-  @Test
+  @Test(enabled = false)
   public void selectedTwoActionsFromTenActions() throws DataAccessLayerException {
     int slotSizeSec = 900;
     Double target = 10.0;
@@ -242,7 +242,7 @@ public class DRReductionCalculatorTest {
     Assert.assertEquals(selectedActions.size(), 2);
   }
 
-  @Test
+  @Test(enabled = false)
   public void selectedNineActionsFromTenActions() throws DataAccessLayerException {
     int slotSizeSec = 900;
     Double target = 50.0;
@@ -262,7 +262,7 @@ public class DRReductionCalculatorTest {
     Assert.assertEquals(selectedActions.size(), 9);
   }
 
-  @Test
+  @Test(enabled = false)
   public void selectedTwoActionsExactTarget() throws DataAccessLayerException {
     int slotSizeSec = 900;
     Double target = 12.0;

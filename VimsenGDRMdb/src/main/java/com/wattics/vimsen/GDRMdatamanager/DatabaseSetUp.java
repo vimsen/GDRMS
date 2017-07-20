@@ -210,7 +210,7 @@ public class DatabaseSetUp {
       prosumerService.insert(pr);
       psService.insert(prosumerhasSite1);
 
-      for (int index = 0; index < actions.size(); i++) {
+      for (int index = 0; index < actions.size(); index++) {
         actionService.insert(actions.get(index));
         actionSlaService.insert(actionSlas.get(index));
       }

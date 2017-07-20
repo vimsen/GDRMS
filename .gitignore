@@ -22,7 +22,7 @@ lcov.info
 *.*.swp
 *.*~
 nb-configuration.xml
-mqtt_config
+mqtt_config.properties
 
 # ignore conf files
 hibernate.cfg.xml

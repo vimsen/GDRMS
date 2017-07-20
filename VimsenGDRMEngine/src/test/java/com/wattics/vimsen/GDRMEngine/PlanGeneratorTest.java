@@ -22,7 +22,7 @@ public class PlanGeneratorTest {
   private String testConfigurationFile = "localhostJavaTest.cfg.xml";
   private HibernateUtil hibernateUtil = new HibernateUtil(testConfigurationFile);
 
-  @Test
+  @Test(enabled = false)
   public void debugPlanCreation()
       throws LDRMRuleException, DataAccessLayerException, MapperException, EDMSDataGetterException, NoValidDataException {
 
@@ -33,7 +33,7 @@ public class PlanGeneratorTest {
     PlanManager.generateAndStorePlansMap(plans, dataGetter, dataStorer);
   }
 
-  @Test
+  @Test(enabled = false)
   public void debugPlanUpdate()
       throws DataAccessLayerException, EDMSDataGetterException, NoValidDataException, MapperException, InterruptedException {
     String planId = "310";

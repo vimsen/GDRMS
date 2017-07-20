@@ -21,14 +21,14 @@ public class MappingClassGenerationTest {
   private String configurationFile = "schemaTestConfig.cfg.xml";
   private HibernateUtil hibernateUtil;
 
-  @BeforeMethod
+  @BeforeMethod(enabled = false)
   public void setUpDb() throws DataAccessLayerException {
     hibernateUtil = new HibernateUtil(configurationFile);
     int numberProsumers = 1;
     DatabaseSetUp.populateDb(hibernateUtil, numberProsumers);
   }
 
-  @Test
+  @Test(enabled = false)
   public void getSiteFromProsumerIdTest() throws DataAccessLayerException {
     int prosumerId = DatabaseSetUp.DEFAULT_PROSUMER_ID;
     GDRMDataGetter dataGetter = new GDRMDataGetter(hibernateUtil);
@@ -37,7 +37,7 @@ public class MappingClassGenerationTest {
     // ProsumerHasSite
   }
 
-  @Test
+  @Test(enabled = false)
   public void getKwh15mnTest() throws DataAccessLayerException {
     GDRMDataGetter dataGetter = new GDRMDataGetter(hibernateUtil);
     Site site = dataGetter.getSite(DatabaseSetUp.DEFAULT_SITE_ID);
@@ -46,14 +46,14 @@ public class MappingClassGenerationTest {
     Kwh15mn kwh15mn = dataGetter.getKwh15mn(equipment, date);
   }
 
-  @Test
+  @Test(enabled = false)
   public void getSiteMetricTest() throws DataAccessLayerException {
     GDRMDataGetter dataGetter = new GDRMDataGetter(hibernateUtil);
     Site site = dataGetter.getSite(DatabaseSetUp.DEFAULT_SITE_ID);
     SiteMetric siteMetric = dataGetter.getSiteMetric(site);
   }
 
-  @Test
+  @Test(enabled = false)
   public void getEquipmentFromSiteTest() throws DataAccessLayerException {
     GDRMDataGetter dataGetter = new GDRMDataGetter(hibernateUtil);
     Site site = dataGetter.getSite(DatabaseSetUp.DEFAULT_SITE_ID);
@@ -64,7 +64,7 @@ public class MappingClassGenerationTest {
     // equipments
   }
 
-  @Test
+  @Test(enabled = false)
   public void getActionsFromProsumerIdTest() throws DataAccessLayerException {
     GDRMDataGetter dataGetter = new GDRMDataGetter(hibernateUtil);
     List<Action> actions = dataGetter.getActionsFromProsumerId(DatabaseSetUp.DEFAULT_PROSUMER_ID);
@@ -74,7 +74,7 @@ public class MappingClassGenerationTest {
     // Equipment.xml has lazy= false for itself and actions
   }
 
-  @AfterMethod
+  @AfterMethod(enabled = false)
   public void cleanDBAndCloseHibernate() throws DataAccessLayerException {
     DatabaseSetUp.cleanDb(hibernateUtil);
     hibernateUtil.closeSessionFactory();

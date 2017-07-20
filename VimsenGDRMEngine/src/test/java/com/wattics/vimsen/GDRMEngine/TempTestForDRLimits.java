@@ -44,7 +44,7 @@ public class TempTestForDRLimits {
   private String testConfigurationFile = "localhostJavaTest.cfg.xml";
   private HibernateUtil hibernateUtil = new HibernateUtil(testConfigurationFile);
 
-  @Test
+  @Test(enabled = false)
   public void getValidActions() throws LDRMRuleException, DataAccessLayerException, MapperException, EDMSDataGetterException {
 
     GDRMDataGetter dataGetter = new GDRMDataGetter(hibernateUtil);
@@ -60,7 +60,7 @@ public class TempTestForDRLimits {
     Assert.assertEquals(selectedAction.size(), 1);
   }
 
-  @Test
+  @Test(enabled = false)
   public void getPlans() throws DataAccessLayerException {
     // GDRMDataGetter dataGetter = new GDRMDataGetter(hibernateUtil);
     // List<MarketSignal> marketSignalAll =
@@ -106,7 +106,7 @@ public class TempTestForDRLimits {
     siteService.insert(site);
   }
 
-  @Test
+  @Test(enabled = false)
   public void getPlansToBeProcessed() throws DataAccessLayerException, NoValidDataException {
     Validation dataGetter = new Validation(hibernateUtil);
 

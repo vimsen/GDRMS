@@ -47,7 +47,7 @@ public class RegisteredRecommendationTest {
     Assert.assertTrue(updatedDss.getRecomRegisteredSent());
   }
 
-  @Test
+  @Test(enabled = false)
   public void generateRecommendationMessage() throws RecommendationException, DataAccessLayerException, NoValidDataException {
     MarketSignal ms = new MarketSignal();
     ms.setTimeInterval(900);
