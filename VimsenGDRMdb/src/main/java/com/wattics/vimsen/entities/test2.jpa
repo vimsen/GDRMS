@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="4.5" rws="_15045246644531372" cws="_15045246644531372" sm="false" xs="false" id="_15045246643681319" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity compositePrimaryKeyClass="CountryPK" abs="false" class="Country" v="true" xre="false" m="false" rootElement="_15045246643681319" id="_15045246643681320">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="name" id="_15045246643691329">
+                <jpa:column name="name" unique="false" nullable="true" insertable="true" updatable="true" table="country" length="255"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15045246643681323" connected-attribute-id="_15045246643691350" v="true" name="cityCollection" id="_15045246643691330"/>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_15045246643691328">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="country"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="country"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="SitePK" abs="false" class="Site" v="true" xre="false" m="false" rootElement="_15045246643681319" id="_15045246643681321">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="name" id="_15045246643691332">
+                <jpa:column name="name" unique="false" nullable="true" insertable="true" updatable="true" table="site" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="street" id="_15045246643691333">
+                <jpa:column name="street" unique="false" nullable="true" insertable="true" updatable="true" table="site" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="streetNumber" id="_15045246643691334">
+                <jpa:column name="street_number" unique="false" nullable="true" insertable="true" updatable="true" table="site" length="255"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15045246643681323" connected-attribute-id="_15045246643691349" v="true" name="cityId" id="_15045246643691335">
+                <jpa:join-column name="CITY_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15045246643681325" connected-attribute-id="_15045246643691359" v="true" name="transformerId" id="_15045246643691336">
+                <jpa:join-column name="TRANSFORMER_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15045246643681324" connected-attribute-id="_15045246643691355" v="true" name="prosumerHasSiteCollection" id="_15045246643691337"/>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15045246643681326" connected-attribute-id="_15045246643691367" v="true" name="equipmentCollection" id="_15045246643691338"/>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_15045246643691331">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="site"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="site"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="ProsumerPK" abs="false" class="Prosumer" v="true" xre="false" m="false" rootElement="_15045246643681319" id="_15045246643681322">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="name" id="_15045246643691340">
+                <jpa:column name="name" unique="false" nullable="false" insertable="true" updatable="true" table="prosumer" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="surname" id="_15045246643691341">
+                <jpa:column name="surname" unique="false" nullable="false" insertable="true" updatable="true" table="prosumer" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="email" id="_15045246643691342">
+                <jpa:column name="email" unique="false" nullable="false" insertable="true" updatable="true" table="prosumer" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="phone" id="_15045246643691343">
+                <jpa:column name="phone" unique="false" nullable="true" insertable="true" updatable="true" table="prosumer" length="255"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15045246643681324" connected-attribute-id="_15045246643691354" v="true" name="prosumerHasSiteCollection" id="_15045246643691344"/>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_15045246643691339">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="prosumer"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="prosumer"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="CityPK" abs="false" class="City" v="true" xre="false" m="false" rootElement="_15045246643681319" id="_15045246643681323">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="name" id="_15045246643691346">
+                <jpa:column name="name" unique="false" nullable="true" insertable="true" updatable="true" table="city" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="county" id="_15045246643691347">
+                <jpa:column name="county" unique="false" nullable="true" insertable="true" updatable="true" table="city" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="timezone" id="_15045246643691348">
+                <jpa:column name="timezone" unique="false" nullable="true" insertable="true" updatable="true" table="city" length="255"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15045246643681320" connected-attribute-id="_15045246643691330" v="true" name="countryId" id="_15045246643691350">
+                <jpa:join-column name="COUNTRY_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15045246643681321" connected-attribute-id="_15045246643691335" v="true" name="siteCollection" id="_15045246643691349"/>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_15045246643691345">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="city"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="city"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyType="D" compositePrimaryKeyClass="ProsumerHasSitePK" abs="false" class="ProsumerHasSite" v="true" xre="false" m="false" rootElement="_15045246643681319" id="_15045246643681324">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="type" id="_15045246643691353">
+                <jpa:column name="type" unique="false" nullable="true" insertable="true" updatable="true" table="prosumer_has_site" length="255"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15045246643681322" connected-attribute-id="_15045246643691344" v="true" name="prosumer" id="_15045246643691354">
+                <jpa:join-column name="PROSUMER_ID" rc="ID" unique="false" nullable="true" insertable="false" updatable="false"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15045246643681321" connected-attribute-id="_15045246643691337" v="true" name="site" id="_15045246643691355">
+                <jpa:join-column name="SITE_ID" rc="ID" unique="false" nullable="true" insertable="false" updatable="false"/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="int" v="true" name="prosumerId" id="_15045246643691351">
+                <jpa:column name="prosumer_id" unique="false" nullable="false" insertable="true" updatable="true" table="prosumer_has_site"/>
+            </jpa:id>
+            <jpa:id attribute-type="int" v="true" name="siteId" id="_15045246643691352">
+                <jpa:column name="site_id" unique="false" nullable="false" insertable="true" updatable="true" table="prosumer_has_site"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="prosumer_has_site"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="TransformerPK" abs="false" class="Transformer" v="true" xre="false" m="false" rootElement="_15045246643681319" id="_15045246643681325">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="Integer" v="true" name="idParent" id="_15045246643691357">
+                <jpa:column name="id_parent" unique="false" nullable="true" insertable="true" updatable="true" table="transformer"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="location" id="_15045246643691358">
+                <jpa:column name="location" unique="false" nullable="true" insertable="true" updatable="true" table="transformer" length="255"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15045246643681327" connected-attribute-id="_15045246643691371" v="true" name="dSOterritoryid" id="_15045246643691360">
+                <jpa:join-column name="DSO_TERRITORY_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15045246643681321" connected-attribute-id="_15045246643691336" v="true" name="siteCollection" id="_15045246643691359"/>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_15045246643691356">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="transformer"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="transformer"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="EquipmentPK" abs="false" class="Equipment" v="true" xre="false" m="false" rootElement="_15045246643681319" id="_15045246643681326">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="name" id="_15045246643691362">
+                <jpa:column name="name" unique="false" nullable="false" insertable="true" updatable="true" table="equipment" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="class1" id="_15045246643691363">
+                <jpa:column name="class" unique="false" nullable="true" insertable="true" updatable="true" table="equipment" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="category" id="_15045246643691364">
+                <jpa:column name="category" unique="false" nullable="false" insertable="true" updatable="true" table="equipment" length="2147483647"/>
+                <jpa:lob/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="brand" id="_15045246643691365">
+                <jpa:column name="brand" unique="false" nullable="true" insertable="true" updatable="true" table="equipment" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="model" id="_15045246643691366">
+                <jpa:column name="model" unique="false" nullable="true" insertable="true" updatable="true" table="equipment" length="255"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15045246643681321" connected-attribute-id="_15045246643691338" v="true" name="siteId" id="_15045246643691367">
+                <jpa:join-column name="SITE_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_15045246643691361">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="equipment"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="equipment"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="DSOterritoryPK" abs="false" class="DSOterritory" v="true" xre="false" m="false" rootElement="_15045246643681319" id="_15045246643681327">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="dSOname" id="_15045246643691369">
+                <jpa:column name="DSO_name" unique="false" nullable="true" insertable="true" updatable="true" table="DSO_territory" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="dSOterritory" id="_15045246643691370">
+                <jpa:column name="DSO_territory" unique="false" nullable="true" insertable="true" updatable="true" table="DSO_territory" length="255"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15045246643681325" connected-attribute-id="_15045246643691360" v="true" name="transformerCollection" id="_15045246643691371"/>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_15045246643691368">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="DSO_territory"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="DSO_territory"/>
+    </jpa:entity>
+    <jpa:snp loc="BEFORE_PACKAGE" e="true">/**
+ * This file was generated by the Jeddict
+ */</jpa:snp>
+    <jpa:wsl>
+        <jpa:ws n="Main" id="_15045246644531372">
+            <i ref="_15045246643681327" x="570" y="592"/>
+            <i ref="_15045246643681326" x="871" y="562"/>
+            <i ref="_15045246643681325" x="314" y="562"/>
+            <i ref="_15045246643681324" x="314" y="32"/>
+            <i ref="_15045246643681323" x="871" y="32"/>
+            <i ref="_15045246643681322" x="32" y="277"/>
+            <i ref="_15045246643681321" x="589" y="277"/>
+            <i ref="_15045246643681320" x="1098" y="277"/>
+        </jpa:ws>
+    </jpa:wsl>
+</jpa:entity-mappings>

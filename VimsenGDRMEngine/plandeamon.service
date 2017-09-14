@@ -1,0 +1,21 @@
+[Unit]
+Description=VIMSEN GDRMS Engine
+After=network.target
+
+[Service]
+Type=simple
+#Type=forking
+
+# Preferably configure a non-privileged user
+User=dss
+
+# Specify the path to your puma application root
+WorkingDirectory=/home/dss/vimsen_demo/gdrms_engine
+
+ExecStart=/usr/bin/java -jar /home/dss/vimsen_demo/gdrms_engine/vimsenGDRMEngine-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

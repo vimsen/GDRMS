@@ -13,7 +13,7 @@ public class SediniTest {
   @Test
   public void testPlanIsHistorical() {
     MarketSignal ms= new MarketSignal();
-    ms.setStartTime(new DateTime("2017-01-01T00:00:00+00:00"));
+    ms.setStartTime(DateTime.now().plusDays(4));
 //    Long sixMonthsAgoInMs = Instant.now().getMillis() - 6 * 30 * 24*60*60*10;
 //    System.out.println("Now: "+new DateTime(Instant.now().getMillis()));
 //    System.out.println(6 * 30 * 24*60*60);
